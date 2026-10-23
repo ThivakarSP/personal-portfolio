@@ -50,93 +50,140 @@
         }
 
         /* Strict Universal Monochrome Reset: Zero Browser Default Colors */
-        ::selection, *::selection {
+        ::selection,
+        *::selection {
             background: #000000 !important;
             color: #ffffff !important;
             -webkit-text-fill-color: #ffffff !important;
         }
-        ::-moz-selection, *::-moz-selection {
+
+        ::-moz-selection,
+        *::-moz-selection {
             background: #000000 !important;
             color: #ffffff !important;
         }
-        body.dark-mode ::selection, body.dark-mode *::selection {
+
+        body.dark-mode ::selection,
+        body.dark-mode *::selection {
             background: #ffffff !important;
             color: #000000 !important;
             -webkit-text-fill-color: #000000 !important;
         }
-        body.dark-mode ::-moz-selection, body.dark-mode *::-moz-selection {
+
+        body.dark-mode ::-moz-selection,
+        body.dark-mode *::-moz-selection {
             background: #ffffff !important;
             color: #000000 !important;
         }
 
         /* Universal Hyperlink Monochrome Reset */
-        a, a:link, a:visited {
+        a,
+        a:link,
+        a:visited {
             color: inherit;
             text-decoration: none;
             -webkit-tap-highlight-color: transparent;
         }
-        a:hover, a:focus, a:active {
+
+        a:hover,
+        a:focus,
+        a:active {
             color: inherit;
         }
-        body.dark-mode a, body.dark-mode a:link, body.dark-mode a:visited {
+
+        body.dark-mode a,
+        body.dark-mode a:link,
+        body.dark-mode a:visited {
             color: inherit;
         }
-        body.dark-mode a:hover, body.dark-mode a:focus, body.dark-mode a:active {
+
+        body.dark-mode a:hover,
+        body.dark-mode a:focus,
+        body.dark-mode a:active {
             color: inherit;
         }
 
         /* Explicit Button Actions Reset (Projects & Elsewhere) */
-        .btn-action, .btn-action:link, .btn-action:visited {
+        .btn-action,
+        .btn-action:link,
+        .btn-action:visited {
             text-decoration: none;
         }
-        .btn-action-primary, .btn-action-primary:link, .btn-action-primary:visited {
+
+        .btn-action-primary,
+        .btn-action-primary:link,
+        .btn-action-primary:visited {
             background: #000000 !important;
             color: #ffffff !important;
             border-color: #000000 !important;
         }
-        .btn-action-primary:hover, .btn-action-primary:active, .btn-action-primary:focus {
+
+        .btn-action-primary:hover,
+        .btn-action-primary:active,
+        .btn-action-primary:focus {
             background: #222222 !important;
             color: #ffffff !important;
         }
-        body.dark-mode .btn-action-primary, body.dark-mode .btn-action-primary:link, body.dark-mode .btn-action-primary:visited {
+
+        body.dark-mode .btn-action-primary,
+        body.dark-mode .btn-action-primary:link,
+        body.dark-mode .btn-action-primary:visited {
             background: #ffffff !important;
             color: #000000 !important;
             border-color: #ffffff !important;
         }
-        body.dark-mode .btn-action-primary:hover, body.dark-mode .btn-action-primary:active, body.dark-mode .btn-action-primary:focus {
+
+        body.dark-mode .btn-action-primary:hover,
+        body.dark-mode .btn-action-primary:active,
+        body.dark-mode .btn-action-primary:focus {
             background: #808080 !important;
             color: #000000 !important;
         }
 
-        .btn-action-ghost, .btn-action-ghost:link, .btn-action-ghost:visited {
+        .btn-action-ghost,
+        .btn-action-ghost:link,
+        .btn-action-ghost:visited {
             background: #ffffff !important;
             color: #000000 !important;
             border-color: #000000 !important;
         }
-        .btn-action-ghost:hover, .btn-action-ghost:active, .btn-action-ghost:focus {
+
+        .btn-action-ghost:hover,
+        .btn-action-ghost:active,
+        .btn-action-ghost:focus {
             background: #000000 !important;
             color: #ffffff !important;
             border-color: #000000 !important;
         }
-        body.dark-mode .btn-action-ghost, body.dark-mode .btn-action-ghost:link, body.dark-mode .btn-action-ghost:visited {
+
+        body.dark-mode .btn-action-ghost,
+        body.dark-mode .btn-action-ghost:link,
+        body.dark-mode .btn-action-ghost:visited {
             background: #000000 !important;
             color: #ffffff !important;
             border-color: #ffffff !important;
         }
-        body.dark-mode .btn-action-ghost:hover, body.dark-mode .btn-action-ghost:active, body.dark-mode .btn-action-ghost:focus {
+
+        body.dark-mode .btn-action-ghost:hover,
+        body.dark-mode .btn-action-ghost:active,
+        body.dark-mode .btn-action-ghost:focus {
             background: #ffffff !important;
             color: #000000 !important;
             border-color: #ffffff !important;
         }
 
         /* Universal Focus & Caret Resets */
-        input, textarea, select {
+        input,
+        textarea,
+        select {
             caret-color: var(--text-main) !important;
         }
+
         :focus-visible {
             outline: 2px solid var(--border) !important;
             outline-offset: 2px !important;
         }
+
         .rag-input:focus,
         .form-group input:focus,
         .form-group textarea:focus {
@@ -144,13 +191,18 @@
         }
 
         /* Pocket Sage Chat Links & Interaction Resets */
-        .rag-message a, .rag-message a:link, .rag-message a:visited {
+        .rag-message a,
+        .rag-message a:link,
+        .rag-message a:visited {
             color: inherit !important;
             text-decoration: underline;
         }
-        .rag-message a:hover, .rag-message a:active {
+
+        .rag-message a:hover,
+        .rag-message a:active {
             color: inherit !important;
         }
+
         body.dark-mode .rag-chip:hover {
             background: #ffffff !important;
             color: #000000 !important;
@@ -1144,6 +1196,7 @@
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
             }
+
             .about-headline {
                 font-size: 2rem;
             }
@@ -2164,9 +2217,11 @@
                 gap: 0.25rem;
                 scrollbar-width: none;
             }
+
             .bottom-nav::-webkit-scrollbar {
                 display: none;
             }
+
             .bottom-nav-item {
                 font-size: 0.78rem;
                 padding: 0.45rem 0.8rem;
@@ -3085,13 +3140,25 @@
         }
 
         @keyframes certFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes certPopIn {
-            from { opacity: 0; transform: scale(0.96) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
     </style>
 </head>
@@ -3274,22 +3341,29 @@
             <div class="badge">
                 <span class="dot"></span> #01 About Me
             </div>
-            
+
             <div class="about-story-layout">
                 <!-- Left Side: Personal Narrative (No bottom boxes) -->
                 <div class="about-story-left">
                     <h2 class="about-headline">Driven by curiosity, grounded by craft.</h2>
                     <p class="about-lead">
-                        Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+                        Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears
+                        meshed, I've had a fascination with what makes things work beneath the surface.
                     </p>
                     <p class="about-p">
-                        In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+                        In software, that curiosity naturally pulled me toward backend architecture. While most people
+                        are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing
+                        databases that never lose a byte, untangling race conditions, and creating systems that stay
+                        fast and calm even under heavy traffic.
                     </p>
                     <div class="about-quote-card">
-                        &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+                        &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably
+                        that users take it for granted.&rdquo;
                     </div>
                     <p class="about-p">
-                        Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+                        Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a
+                        chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a
+                        patient cup of tea.
                     </p>
                 </div>
 
@@ -3302,7 +3376,8 @@
                         </div>
                         <div class="about-pillar-title">Patience Over Hype</div>
                         <div class="about-pillar-desc">
-                            Frameworks come and go every few months, but deep computer science fundamentals, clear thinking, and clean communication never go out of style.
+                            Frameworks come and go every few months, but deep computer science fundamentals, clear
+                            thinking, and clean communication never go out of style.
                         </div>
                     </div>
 
@@ -3313,7 +3388,8 @@
                         </div>
                         <div class="about-pillar-title">Quiet, Powerful Systems</div>
                         <div class="about-pillar-desc">
-                            Whether it's orchestrating a distributed lock with Redis Lua or building autonomous agent workflows, I love making complex tech feel frictionless for real people.
+                            Whether it's orchestrating a distributed lock with Redis Lua or building autonomous agent
+                            workflows, I love making complex tech feel frictionless for real people.
                         </div>
                     </div>
 
@@ -3324,7 +3400,8 @@
                         </div>
                         <div class="about-pillar-title">Continuous Growth &amp; Craft</div>
                         <div class="about-pillar-desc">
-                            Always seeking environments where I can learn from brilliant peers, take ownership of high-impact challenges, and build things that genuinely matter.
+                            Always seeking environments where I can learn from brilliant peers, take ownership of
+                            high-impact challenges, and build things that genuinely matter.
                         </div>
                     </div>
                 </div>
@@ -3558,6 +3635,7 @@
                 .track-1 .node-container {
                     --radius: 70px !important;
                 }
+
                 .track-2 .node-container {
                     --radius: 145px !important;
                 }
@@ -4093,10 +4171,13 @@
                             <span class="tag-pill tag-violet">Token Bucket</span>
                         </div>
                         <div class="dossier-actions">
-                            <a href="project-detail.html" class="btn-action btn-action-primary">Case Study Blueprint &#8594;</a>
+                            <a href="project-detail.html" class="btn-action btn-action-primary">Case Study Blueprint
+                                &#8594;</a>
                             <a href="https://github.com/ThivakarSP" target="_blank" rel="noopener noreferrer"
-                                class="btn-action btn-action-ghost"><i class="devicon-github-original"></i> GitHub &#8599;</a>
-                            <a href="project-detail.html#live-simulator" class="btn-action btn-action-ghost">Live Demo &#8599;</a>
+                                class="btn-action btn-action-ghost"><i class="devicon-github-original"></i> GitHub
+                                &#8599;</a>
+                            <a href="project-detail.html#live-simulator" class="btn-action btn-action-ghost">Live Demo
+                                &#8599;</a>
                         </div>
                     </div>
                     <div class="dossier-pipeline">
@@ -4504,7 +4585,8 @@
             </div>
             <div class="workflow-header">
                 <h2>Validated expertise.<br>Continuous telemetry.</h2>
-                <p>A proven track record of continuous learning, distributed cloud systems, and algorithmic problem-solving.</p>
+                <p>A proven track record of continuous learning, distributed cloud systems, and algorithmic
+                    problem-solving.</p>
             </div>
 
             <style>
@@ -4524,10 +4606,11 @@
                     top: 20px;
                     bottom: 20px;
                     width: 1px;
-                    background: var(--hairline, rgba(0,0,0,0.12));
+                    background: var(--hairline, rgba(0, 0, 0, 0.12));
                 }
+
                 body.dark-mode .c4-stream::before {
-                    background: var(--hairline, rgba(255,255,255,0.14));
+                    background: var(--hairline, rgba(255, 255, 255, 0.14));
                 }
 
                 .c4-node {
@@ -4557,6 +4640,7 @@
                     color: #000000;
                     box-shadow: 0 0 0 6px var(--bg, #ffffff);
                 }
+
                 body.dark-mode .c4-node-marker {
                     background: #000000;
                     border-color: #ffffff;
@@ -4578,6 +4662,7 @@
                     align-items: center;
                     gap: 8px;
                 }
+
                 .c4-dot {
                     width: 6px;
                     height: 6px;
@@ -4607,13 +4692,15 @@
                     background: #000000;
                     cursor: zoom-in;
                     border-radius: 3px;
-                    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
                     transition: transform 0.25s ease, border-color 0.25s ease;
                 }
+
                 .c4-img-frame:hover {
                     transform: scale(1.02);
                     border-color: var(--primary);
                 }
+
                 .c4-img {
                     width: 100%;
                     height: 100%;
@@ -4660,6 +4747,7 @@
                     white-space: nowrap;
                     transition: all 0.2s ease;
                 }
+
                 .c4-mono-pill:hover {
                     border-color: var(--primary);
                     background: var(--primary);
@@ -4667,9 +4755,19 @@
                 }
 
                 @media (max-width: 900px) {
-                    .c4-stream { padding-left: 45px; }
-                    .c4-node { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
-                    .c4-img-frame { height: 240px; }
+                    .c4-stream {
+                        padding-left: 45px;
+                    }
+
+                    .c4-node {
+                        grid-template-columns: 1fr;
+                        gap: 1.5rem;
+                        margin-bottom: 3.5rem;
+                    }
+
+                    .c4-img-frame {
+                        height: 240px;
+                    }
                 }
             </style>
 
@@ -4684,7 +4782,9 @@
                         </div>
                         <h3 class="c4-node-title">Azure SQL AI Developer Associate (DP-800)</h3>
                         <p class="c4-node-desc">
-                            Direct validation of database vector indexing, real-time embeddings computation, RAG integration, and scalable SQL stored procedure engineering on enterprise Azure infrastructure.
+                            Direct validation of database vector indexing, real-time embeddings computation, RAG
+                            integration, and scalable SQL stored procedure engineering on enterprise Azure
+                            infrastructure.
                         </p>
                         <div class="c4-tags-row">
                             <span class="c4-mono-pill">Azure AI</span>
@@ -4693,7 +4793,8 @@
                             <span class="c4-mono-pill">Stored Procs</span>
                         </div>
                     </div>
-                    <div class="c4-img-frame" onclick="openCertLightbox('cert_microsoft_dp800.jpg', 'Microsoft Certified: Azure SQL AI Developer Associate (DP-800)', 'ID: MS-DP800-482910 &bull; Microsoft Corporation')">
+                    <div class="c4-img-frame"
+                        onclick="openCertLightbox('cert_microsoft_dp800.jpg', 'Microsoft Certified: Azure SQL AI Developer Associate (DP-800)', 'ID: MS-DP800-482910 &bull; Microsoft Corporation')">
                         <img src="cert_microsoft_dp800.jpg" alt="Microsoft DP-800 Certificate Scan" class="c4-img" />
                         <div class="c4-view-badge">[+] Zoom Scan</div>
                     </div>
@@ -4709,7 +4810,8 @@
                         </div>
                         <h3 class="c4-node-title">AWS Certified Cloud Practitioner</h3>
                         <p class="c4-node-desc">
-                            Cloud architectural principles, high-availability multi-AZ deployment topologies, IAM zero-trust policy models, and distributed container systems.
+                            Cloud architectural principles, high-availability multi-AZ deployment topologies, IAM
+                            zero-trust policy models, and distributed container systems.
                         </p>
                         <div class="c4-tags-row">
                             <span class="c4-mono-pill">AWS ECS</span>
@@ -4718,7 +4820,8 @@
                             <span class="c4-mono-pill">CloudWatch</span>
                         </div>
                     </div>
-                    <div class="c4-img-frame" onclick="openCertLightbox('cert_aws_cloud.jpg', 'AWS Certified Cloud Practitioner', 'ID: AWS-CCP-928174 &bull; Amazon Web Services')">
+                    <div class="c4-img-frame"
+                        onclick="openCertLightbox('cert_aws_cloud.jpg', 'AWS Certified Cloud Practitioner', 'ID: AWS-CCP-928174 &bull; Amazon Web Services')">
                         <img src="cert_aws_cloud.jpg" alt="AWS Cloud Practitioner Certificate Scan" class="c4-img" />
                         <div class="c4-view-badge">[+] Zoom Scan</div>
                     </div>
@@ -4734,7 +4837,8 @@
                         </div>
                         <h3 class="c4-node-title">Nutanix Certified Professional (NCP-NS)</h3>
                         <p class="c4-node-desc">
-                            Microsegmentation, virtual software-defined networks (Flow SDN), network security policies, and hyperconverged infrastructure hardening.
+                            Microsegmentation, virtual software-defined networks (Flow SDN), network security policies,
+                            and hyperconverged infrastructure hardening.
                         </p>
                         <div class="c4-tags-row">
                             <span class="c4-mono-pill">Flow SDN</span>
@@ -4743,7 +4847,8 @@
                             <span class="c4-mono-pill">Firewall Policy</span>
                         </div>
                     </div>
-                    <div class="c4-img-frame" onclick="openCertLightbox('cert_nutanix_ncp.jpg', 'Nutanix Certified Professional: Network &amp; Security (NCP-NS)', 'ID: NTNX-NCP-582103 &bull; Nutanix Inc.')">
+                    <div class="c4-img-frame"
+                        onclick="openCertLightbox('cert_nutanix_ncp.jpg', 'Nutanix Certified Professional: Network &amp; Security (NCP-NS)', 'ID: NTNX-NCP-582103 &bull; Nutanix Inc.')">
                         <img src="cert_nutanix_ncp.jpg" alt="Nutanix NCP-NS Certificate Scan" class="c4-img" />
                         <div class="c4-view-badge">[+] Zoom Scan</div>
                     </div>
@@ -4759,7 +4864,8 @@
                         </div>
                         <h3 class="c4-node-title">SQL (Advanced) Certified</h3>
                         <p class="c4-node-desc">
-                            Complex recursive common table expressions (CTEs), multi-level windowing partitions, execution plan cost optimization, and dynamic SQL query tuning.
+                            Complex recursive common table expressions (CTEs), multi-level windowing partitions,
+                            execution plan cost optimization, and dynamic SQL query tuning.
                         </p>
                         <div class="c4-tags-row">
                             <span class="c4-mono-pill">Recursive CTE</span>
@@ -4768,7 +4874,8 @@
                             <span class="c4-mono-pill">Indexing</span>
                         </div>
                     </div>
-                    <div class="c4-img-frame" onclick="openCertLightbox('cert_hackerrank_sql.jpg', 'HackerRank SQL (Advanced) Certificate', 'ID: HR-SQL-ADV-1938 &bull; HackerRank')">
+                    <div class="c4-img-frame"
+                        onclick="openCertLightbox('cert_hackerrank_sql.jpg', 'HackerRank SQL (Advanced) Certificate', 'ID: HR-SQL-ADV-1938 &bull; HackerRank')">
                         <img src="cert_hackerrank_sql.jpg" alt="HackerRank SQL Certificate Scan" class="c4-img" />
                         <div class="c4-view-badge">[+] Zoom Scan</div>
                     </div>
@@ -5304,7 +5411,7 @@
         // ── Pocket Sage Backend Config ─────────────────────────────────────────
         // Change this to your Railway URL once deployed.
         // For local dev: 'http://localhost:8000'
-        const SAGE_API_URL = 'http://127.0.0.1:8000';
+        const SAGE_API_URL = 'https://pocket-sage-backend.onrender.com/';
 
         // Persistent session ID — generates once per browser session
         const SAGE_SESSION_KEY = 'pocket_sage_session_id';
@@ -5479,7 +5586,7 @@
             }
         }
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 closeCertLightbox();
             }
@@ -5497,7 +5604,8 @@
     </div>
 
     <!-- Full-Res Lightbox Modal for Certifications -->
-    <div class="lightbox-modal" id="certLightboxModal" style="display: none;" onclick="closeCertLightboxOnBackdrop(event)">
+    <div class="lightbox-modal" id="certLightboxModal" style="display: none;"
+        onclick="closeCertLightboxOnBackdrop(event)">
         <div class="lightbox-content">
             <div class="lightbox-topbar">
                 <span id="certLightboxMeta">CREDENTIAL SCAN INSPECTOR</span>
@@ -5507,8 +5615,10 @@
                 <img src="" alt="Certificate Scan" id="certLightboxImg" class="lightbox-img" />
             </div>
             <div class="lightbox-bottombar">
-                <span id="certLightboxTitle" style="font-weight:700; font-size:0.95rem;">Certificate Document Scan</span>
-                <span style="font-family:'Space Mono', monospace; font-size:0.75rem; color:var(--text-dim);">&#11044; STRICT MONOCHROME ARCHIVE</span>
+                <span id="certLightboxTitle" style="font-weight:700; font-size:0.95rem;">Certificate Document
+                    Scan</span>
+                <span style="font-family:'Space Mono', monospace; font-size:0.75rem; color:var(--text-dim);">&#11044;
+                    STRICT MONOCHROME ARCHIVE</span>
             </div>
         </div>
     </div>
