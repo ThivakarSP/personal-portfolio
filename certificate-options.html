@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications &amp; Credentials — Pure Black &amp; White Architecture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --text-main: #000000;
+            --text-dim: #666666;
+            --border: rgba(0, 0, 0, 0.12);
+            --hairline: rgba(0, 0, 0, 0.12);
+            --primary: #000000;
+            --hover-bg: rgba(0, 0, 0, 0.025);
+            --card-subtle: rgba(0, 0, 0, 0.02);
+            --modal-bg: rgba(255, 255, 255, 0.96);
+            --img-border: rgba(0, 0, 0, 0.18);
+        }
+
+        body.dark-mode {
+            --bg: #0d0d0d;
+            --text-main: #f0f0f0;
+            --text-dim: #888888;
+            --border: rgba(255, 255, 255, 0.14);
+            --hairline: rgba(255, 255, 255, 0.14);
+            --primary: #ffffff;
+            --hover-bg: rgba(255, 255, 255, 0.035);
+            --card-subtle: rgba(255, 255, 255, 0.025);
+            --modal-bg: rgba(13, 13, 13, 0.96);
+            --img-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            padding: 2rem 4vw 8rem;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* ── STICKY TOP CONTROLLER ── */
+        .top-bar {
+            position: sticky;
+            top: 1rem;
+            z-index: 1000;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            backdrop-filter: blur(12px);
+            margin-bottom: 4rem;
+        }
+
+        .top-bar-left h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .top-bar-left h1 span.mono-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            border: 1px solid var(--primary);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .top-bar-left p {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .top-bar-nav {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .opt-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.45rem 0.85rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .opt-btn:hover {
+            background: var(--primary);
+            color: var(--bg);
+            border-color: var(--primary);
+        }
+
+        .theme-toggle-btn {
+            background: var(--primary);
+            color: var(--bg);
+            border: 1px solid var(--primary);
+            padding: 0.45rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s;
+        }
+        .theme-toggle-btn:hover { opacity: 0.85; }
+
+        /* ── SECTION COMMON ── */
+        .option-section {
+            margin-bottom: 7rem;
+            padding-bottom: 6rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .option-header {
+            margin-bottom: 3rem;
+        }
+
+        .option-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+        }
+
+        .option-title {
+            font-size: 2.1rem;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            line-height: 1.15;
+        }
+
+        .option-desc {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            max-width: 750px;
+            margin-top: 0.4rem;
+            line-height: 1.55;
+        }
+
+        .option-why {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-left: 2px solid var(--primary);
+            color: var(--text-main);
+            background: var(--card-subtle);
+            margin-top: 0.8rem;
+            display: inline-block;
+        }
+
+        /* Mono Pill & Buttons */
+        .mono-pill {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            color: var(--text-main);
+            background: var(--bg);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        .mono-pill:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--bg);
+        }
+
+        .btn-action-mono {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.45rem 1rem;
+            border-radius: 3px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+        }
+        .btn-action-primary {
+            background: var(--primary);
+            color: var(--bg);
+            border: 1px solid var(--primary);
+        }
+        .btn-action-primary:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+        .btn-action-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+        .btn-action-outline:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--bg);
+            transform: translateY(-1px);
+        }
+
+        /* ═════════════════════════════════════════════════════════════════
+           OPTION C1: ARCHITECTURAL CREDENTIAL LEDGER & EXPANDING BLUEPRINT
+           (Inspired directly by Option 1 Project flow: seamless rows,
+           hairlines, non-boxy, expanding certificate preview)
+           ═════════════════════════════════════════════════════════════════ */
+        .c1-ledger {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .c1-row {
+            position: relative;
+            border-top: 1px solid var(--border);
+            padding: 2.2rem 1.5rem;
+            display: grid;
+            grid-template-columns: 90px 1.8fr 1fr 140px;
+            gap: 2rem;
+            align-items: center;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+        .c1-row:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .c1-row::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .c1-row:hover {
+            background: var(--hover-bg);
+        }
+        .c1-row:hover::before,
+        .c1-row.is-expanded::before {
+            opacity: 1;
+        }
+
+        .c1-serial {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .c1-serial span.sub {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .c1-main-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .c1-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+        }
+
+        .c1-meta-row .issuer-tag {
+            font-weight: 700;
+            color: var(--text-main);
+            border-right: 1px solid var(--border);
+            padding-right: 12px;
+        }
+
+        .c1-cert-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+            line-height: 1.25;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .c1-cert-desc {
+            font-size: 0.86rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+            max-width: 620px;
+        }
+
+        .c1-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .c1-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .c1-thumb-btn {
+            position: relative;
+            width: 100px;
+            height: 68px;
+            border: 1px solid var(--img-border);
+            border-radius: 3px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .c1-thumb-btn:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .c1-thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .c1-thumb-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.65rem;
+            font-family: 'Space Mono', monospace;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .c1-thumb-btn:hover .c1-thumb-overlay {
+            opacity: 1;
+        }
+
+        .c1-expand-toggle {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .c1-row:hover .c1-expand-toggle {
+            color: var(--primary);
+        }
+
+        /* Expanding Drawer */
+        .c1-drawer {
+            grid-column: 1 / -1;
+            display: none;
+            padding-top: 1.8rem;
+            margin-top: 1.5rem;
+            border-top: 1px dashed var(--border);
+            animation: fadeIn 0.3s ease;
+        }
+        .c1-row.is-expanded .c1-drawer {
+            display: grid;
+            grid-template-columns: 460px 1fr;
+            gap: 2.5rem;
+        }
+
+        .c1-drawer-preview {
+            position: relative;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 8px;
+            background: var(--card-subtle);
+        }
+
+        .c1-drawer-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            cursor: zoom-in;
+            transition: opacity 0.2s;
+        }
+        .c1-drawer-img:hover {
+            opacity: 0.92;
+        }
+
+        .c1-drawer-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .c1-spec-table {
+            width: 100%;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            border-collapse: collapse;
+        }
+        .c1-spec-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+        .c1-spec-table td {
+            padding: 0.6rem 0;
+        }
+        .c1-spec-table td.label {
+            color: var(--text-dim);
+            width: 160px;
+        }
+        .c1-spec-table td.val {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        /* ═════════════════════════════════════════════════════════════════
+           OPTION C2: MINIMALIST MONOCHROME DOCUMENT GALLERY (SPEC SHEETS)
+           (Drafting table frames, corner registration crop marks,
+           high-res framed document sheets)
+           ═════════════════════════════════════════════════════════════════ */
+        .c2-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3.5rem 3rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .c2-card {
+            position: relative;
+            border: 1px solid var(--border);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+            background: var(--bg);
+        }
+
+        /* Corner Registration Marks (+) */
+        .c2-card::before, .c2-card::after {
+            position: absolute;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            opacity: 0.5;
+            line-height: 1;
+        }
+        .c2-card::before { content: '+'; top: 6px; left: 8px; }
+        .c2-card::after { content: '+'; bottom: 6px; right: 8px; }
+
+        .c2-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .c2-top-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .c2-frame {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            border: 1px solid var(--img-border);
+            overflow: hidden;
+            background: #000;
+            cursor: zoom-in;
+            margin-bottom: 1.5rem;
+        }
+
+        .c2-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.35s ease, opacity 0.2s;
+            display: block;
+        }
+
+        .c2-card:hover .c2-img {
+            transform: scale(1.03);
+            opacity: 0.95;
+        }
+
+        .c2-view-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68rem;
+            padding: 4px 8px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            backdrop-filter: blur(4px);
+        }
+
+        .c2-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+            line-height: 1.25;
+            margin-bottom: 0.5rem;
+        }
+
+        .c2-desc {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.55;
+            margin-bottom: 1.2rem;
+        }
+
+        .c2-footer {
+            margin-top: auto;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .c2-id-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+        }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           OPTION C3: INTERACTIVE SPLIT-PANE CREDENTIAL INSPECTOR
+           (Master-Detail architecture: interactive selector on left,
+           large live viewport on right with inspection telemetry)
+           ═════════════════════════════════════════════════════════════════ */
+        .c3-inspector {
+            display: grid;
+            grid-template-columns: 1.15fr 1.35fr;
+            gap: 3rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+
+        .c3-master-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--border);
+        }
+
+        .c3-item {
+            padding: 1.6rem 1.4rem;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .c3-item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .c3-item:hover {
+            background: var(--hover-bg);
+        }
+
+        .c3-item.is-active {
+            background: var(--card-subtle);
+        }
+        .c3-item.is-active::before {
+            opacity: 1;
+        }
+
+        .c3-item-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            margin-bottom: 0.4rem;
+        }
+
+        .c3-item-title {
+            font-size: 1.18rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.3rem;
+        }
+
+        .c3-item-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 0.6rem;
+        }
+
+        /* Detail Viewport (Sticky) */
+        .c3-detail-pane {
+            position: sticky;
+            top: 7rem;
+            border: 1px solid var(--border);
+            padding: 2rem;
+            background: var(--bg);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .c3-detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .c3-detail-id {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .c3-detail-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-top: 4px;
+        }
+
+        .c3-detail-img-box {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            border: 1px solid var(--img-border);
+            overflow: hidden;
+            background: #000;
+            cursor: zoom-in;
+            border-radius: 2px;
+        }
+
+        .c3-detail-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #0d0d0d;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .c3-detail-img:hover {
+            transform: scale(1.02);
+        }
+
+        .c3-detail-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .c3-spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .c3-spec-k {
+            color: var(--text-dim);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+        }
+        .c3-spec-v {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* ═════════════════════════════════════════════════════════════════
+           OPTION C4: TELEMETRY STREAM WITH INTEGRATED DOCUMENT SCANS
+           (Continuous linear timeline bus, sequential verification tags)
+           ═════════════════════════════════════════════════════════════════ */
+        .c4-stream {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-left: 50px;
+        }
+
+        /* Continuous Spine */
+        .c4-stream::before {
+            content: '';
+            position: absolute;
+            left: 17px;
+            top: 20px;
+            bottom: 20px;
+            width: 1px;
+            background: var(--hairline);
+        }
+
+        .c4-node {
+            position: relative;
+            margin-bottom: 4.5rem;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .c4-node-marker {
+            position: absolute;
+            left: -50px;
+            top: 10px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--primary);
+            box-shadow: 0 0 0 6px var(--bg);
+        }
+
+        .c4-text-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .c4-telemetry-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .c4-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .c4-node-title {
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+            line-height: 1.2;
+        }
+
+        .c4-node-desc {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.55;
+        }
+
+        .c4-img-frame {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            border: 1px solid var(--img-border);
+            overflow: hidden;
+            background: #000;
+            cursor: zoom-in;
+            border-radius: 3px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+        .c4-img-frame:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+        }
+        .c4-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ═════════════════════════════════════════════════════════════════
+           LIGHTBOX MODAL FOR FULL-RES INSPECTION
+           ═════════════════════════════════════════════════════════════════ */
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            animation: fadeIn 0.2s ease;
+        }
+        .lightbox-modal.is-open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 1000px;
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .lightbox-topbar {
+            padding: 0.8rem 1.4rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            background: var(--card-subtle);
+        }
+
+        .lightbox-img-wrap {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            max-height: 75vh;
+            overflow: auto;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-bottombar {
+            padding: 1rem 1.4rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lightbox-close-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.35rem 0.8rem;
+            border-radius: 3px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lightbox-close-btn:hover {
+            background: var(--primary);
+            color: var(--bg);
+            border-color: var(--primary);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .c1-row { grid-template-columns: 80px 1fr; gap: 1rem; }
+            .c1-skills, .c1-actions { grid-column: 2; }
+            .c1-drawer-details { gap: 1rem; }
+            .c1-row.is-expanded .c1-drawer { grid-template-columns: 1fr; }
+            .c2-grid { grid-template-columns: 1fr; }
+            .c3-inspector { grid-template-columns: 1fr; }
+            .c3-detail-pane { position: static; }
+            .c4-node { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── STICKY TOP CONTROLLER ── -->
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <h1>
+                Certifications Showcase
+                <span class="mono-tag">PURE B&amp;W</span>
+            </h1>
+            <p>4 Distinct Non-Boxy Presentation Options with High-Res Document Scans &amp; Telemetry</p>
+        </div>
+
+        <nav class="top-bar-nav">
+            <a href="#opt-c1" class="opt-btn">01. Ledger &amp; Drawer</a>
+            <a href="#opt-c2" class="opt-btn">02. Spec Sheets</a>
+            <a href="#opt-c3" class="opt-btn">03. Split Inspector</a>
+            <a href="#opt-c4" class="opt-btn">04. Telemetry Stream</a>
+            <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-icon">&#9680;</span>
+                <span id="theme-text">Dark Mode</span>
+            </button>
+            <a href="index.html#certificates" class="opt-btn" style="border-color:var(--primary); font-weight:700;">&#8592; Main Website</a>
+            <a href="project-options.html" class="opt-btn">&#8599; Projects (B&amp;W)</a>
+        </nav>
+    </header>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         OPTION C1: ARCHITECTURAL CREDENTIAL LEDGER & EXPANDING BLUEPRINT
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="option-section" id="opt-c1">
+        <div class="option-header">
+            <span class="option-badge">OPTION C1 &bull; ARCHITECTURAL LEDGER &amp; EXPANDING DRAWER</span>
+            <h2 class="option-title">Linear Credential Ledger with Inline Document Inspection</h2>
+            <p class="option-desc">
+                Derived directly from the Option 1 Project aesthetic. Clean horizontal rows with strict hairlines, serial indices, verification beacons, and an expanding technical drawer that displays the high-resolution certificate.
+            </p>
+            <div class="option-why">
+                &#9654; Click any row or thumbnail to slide open the high-res blueprint drawer and technical specification sheet.
+            </div>
+        </div>
+
+        <div class="c1-ledger">
+            <!-- Item 1: Microsoft DP-800 -->
+            <div class="c1-row is-expanded" onclick="toggleC1Drawer(this, event)">
+                <div class="c1-serial">
+                    [01]
+                    <span class="sub">AZ-SQL</span>
+                </div>
+                <div class="c1-main-info">
+                    <div class="c1-meta-row">
+                        <span class="issuer-tag">MICROSOFT CORP</span>
+                        <span>ISSUED NOV 2024</span>
+                        <span>ID: MS-DP800-482910</span>
+                        <span>&#11044; VERIFIED</span>
+                    </div>
+                    <h3 class="c1-cert-title">
+                        Azure SQL AI Developer Associate (DP-800)
+                    </h3>
+                    <p class="c1-cert-desc">
+                        Engineering enterprise vector databases, RAG integration, SQL AI pipeline orchestration, stored procedure vector indexing, and low-latency embeddings on Azure SQL.
+                    </p>
+                </div>
+                <div class="c1-skills">
+                    <span class="mono-pill">Azure SQL</span>
+                    <span class="mono-pill">Vector Search</span>
+                    <span class="mono-pill">RAG Pipelines</span>
+                    <span class="mono-pill">AI Embeddings</span>
+                </div>
+                <div class="c1-actions">
+                    <div class="c1-thumb-btn" onclick="openLightbox('cert_microsoft_dp800.jpg', 'Microsoft Certified: Azure SQL AI Developer Associate (DP-800)', 'ID: MS-DP800-482910 &bull; Microsoft Corporation', event)">
+                        <img src="cert_microsoft_dp800.jpg" alt="Microsoft DP-800 Certificate" class="c1-thumb-img" />
+                        <div class="c1-thumb-overlay">&#128269; ZOOM</div>
+                    </div>
+                    <span class="c1-expand-toggle">&#9662; Specification</span>
+                </div>
+
+                <!-- Expanding Drawer -->
+                <div class="c1-drawer">
+                    <div class="c1-drawer-preview">
+                        <img src="cert_microsoft_dp800.jpg" alt="Microsoft Certificate" class="c1-drawer-img" onclick="openLightbox('cert_microsoft_dp800.jpg', 'Microsoft Certified: Azure SQL AI Developer Associate (DP-800)', 'ID: MS-DP800-482910', event)" />
+                    </div>
+                    <div class="c1-drawer-details">
+                        <div>
+                            <table class="c1-spec-table">
+                                <tr>
+                                    <td class="label">CREDENTIAL CODE</td>
+                                    <td class="val">DP-800 (Exam DP-800: AI &amp; SQL Infrastructure)</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">ISSUING ENTITY</td>
+                                    <td class="val">Microsoft Corporation Worldwide</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">VERIFICATION CHECKSUM</td>
+                                    <td class="val">SHA256: 9b2d8f1e4...8a7c12 (Registry Validated)</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">SYSTEM DOMAIN</td>
+                                    <td class="val">Distributed Database Indexing, Vector Store Tuning</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button class="btn-action-mono btn-action-primary" onclick="openLightbox('cert_microsoft_dp800.jpg', 'Microsoft Certified: Azure SQL AI Developer Associate', 'ID: MS-DP800-482910', event)">
+                                &#128269; Inspect High-Res Scan
+                            </button>
+                            <a href="https://learn.microsoft.com" target="_blank" class="btn-action-mono btn-action-outline">
+                                Verify on Microsoft Registry &#8599;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2: AWS CCP -->
+            <div class="c1-row" onclick="toggleC1Drawer(this, event)">
+                <div class="c1-serial">
+                    [02]
+                    <span class="sub">AWS-CLD</span>
+                </div>
+                <div class="c1-main-info">
+                    <div class="c1-meta-row">
+                        <span class="issuer-tag">AMAZON WEB SERVICES</span>
+                        <span>ISSUED SEP 2024</span>
+                        <span>ID: AWS-CCP-928174</span>
+                        <span>&#11044; ACTIVE</span>
+                    </div>
+                    <h3 class="c1-cert-title">
+                        AWS Certified Cloud Practitioner
+                    </h3>
+                    <p class="c1-cert-desc">
+                        Cloud architectural principles, high-availability multi-AZ deployment strategies, IAM zero-trust policy models, and distributed microservices infrastructure.
+                    </p>
+                </div>
+                <div class="c1-skills">
+                    <span class="mono-pill">AWS ECS</span>
+                    <span class="mono-pill">VPC &amp; Subnets</span>
+                    <span class="mono-pill">IAM Security</span>
+                    <span class="mono-pill">S3 &amp; DynamoDB</span>
+                </div>
+                <div class="c1-actions">
+                    <div class="c1-thumb-btn" onclick="openLightbox('cert_aws_cloud.jpg', 'AWS Certified Cloud Practitioner', 'ID: AWS-CCP-928174 &bull; Amazon Web Services', event)">
+                        <img src="cert_aws_cloud.jpg" alt="AWS Cloud Certificate" class="c1-thumb-img" />
+                        <div class="c1-thumb-overlay">&#128269; ZOOM</div>
+                    </div>
+                    <span class="c1-expand-toggle">&#9662; Specification</span>
+                </div>
+
+                <!-- Expanding Drawer -->
+                <div class="c1-drawer">
+                    <div class="c1-drawer-preview">
+                        <img src="cert_aws_cloud.jpg" alt="AWS Cloud Certificate" class="c1-drawer-img" onclick="openLightbox('cert_aws_cloud.jpg', 'AWS Certified Cloud Practitioner', 'ID: AWS-CCP-928174', event)" />
+                    </div>
+                    <div class="c1-drawer-details">
+                        <div>
+                            <table class="c1-spec-table">
+                                <tr>
+                                    <td class="label">CREDENTIAL CODE</td>
+                                    <td class="val">CLF-C02 (AWS Cloud Architecture Standard)</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">ISSUING ENTITY</td>
+                                    <td class="val">Amazon Web Services Training &amp; Certification</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">VERIFICATION CHECKSUM</td>
+                                    <td class="val">SHA256: 4e81fa2c...7d1109 (AWS Credly Verified)</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">SYSTEM DOMAIN</td>
+                                    <td class="val">Fault-Tolerant Distributed Cloud Systems</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button class="btn-action-mono btn-action-primary" onclick="openLightbox('cert_aws_cloud.jpg', 'AWS Certified Cloud Practitioner', 'ID: AWS-CCP-928174', event)">
+                                &#128269; Inspect High-Res Scan
+                            </button>
+                            <a href="https://aws.amazon.com/verification" target="_blank" class="btn-action-mono btn-action-outline">
+                                Verify on AWS Registry &#8599;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: Nutanix NCP-NS -->
+            <div class="c1-row" onclick="toggleC1Drawer(this, event)">
+                <div class="c1-serial">
+                    [03]
+                    <span class="sub">NTNX-NS</span>
+                </div>
+                <div class="c1-main-info">
+                    <div class="c1-meta-row">
+                        <span class="issuer-tag">NUTANIX INC</span>
+                        <span>ISSUED AUG 2024</span>
+                        <span>ID: NTNX-NCP-582103</span>
+                        <span>&#11044; VERIFIED</span>
+                    </div>
+                    <h3 class="c1-cert-title">
+                        Nutanix Certified Professional &mdash; Network &amp; Security (NCP-NS)
+                    </h3>
+                    <p class="c1-cert-desc">
+                        Microsegmentation, virtual software-defined networks (Flow SDN), network security policies, hyperconverged infrastructure hardening, and audit compliance.
+                    </p>
+                </div>
+                <div class="c1-skills">
+                    <span class="mono-pill">Flow SDN</span>
+                    <span class="mono-pill">Microsegmentation</span>
+                    <span class="mono-pill">HCI Security</span>
+                    <span class="mono-pill">VLAN Isolation</span>
+                </div>
+                <div class="c1-actions">
+                    <div class="c1-thumb-btn" onclick="openLightbox('cert_nutanix_ncp.jpg', 'Nutanix Certified Professional: Network &amp; Security (NCP-NS)', 'ID: NTNX-NCP-582103 &bull; Nutanix Inc.', event)">
+                        <img src="cert_nutanix_ncp.jpg" alt="Nutanix NCP-NS Certificate" class="c1-thumb-img" />
+                        <div class="c1-thumb-overlay">&#128269; ZOOM</div>
+                    </div>
+                    <span class="c1-expand-toggle">&#9662; Specification</span>
+                </div>
+
+                <!-- Expanding Drawer -->
+                <div class="c1-drawer">
+                    <div class="c1-drawer-preview">
+                        <img src="cert_nutanix_ncp.jpg" alt="Nutanix NCP-NS Certificate" class="c1-drawer-img" onclick="openLightbox('cert_nutanix_ncp.jpg', 'Nutanix Certified Professional: NCP-NS', 'ID: NTNX-NCP-582103', event)" />
+                    </div>
+                    <div class="c1-drawer-details">
+                        <div>
+                            <table class="c1-spec-table">
+                                <tr>
+                                    <td class="label">CREDENTIAL CODE</td>
+                                    <td class="val">NCP-NS v6.5 (Enterprise Virtual Security)</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">ISSUING ENTITY</td>
+                                    <td class="val">Nutanix University / Enterprise Systems</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">VERIFICATION CHECKSUM</td>
+                                    <td class="val">SHA256: 7f3392a0...e109ab (Nutanix Validated)</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">SYSTEM DOMAIN</td>
+                                    <td class="val">Software-Defined Networking &amp; East-West Security</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button class="btn-action-mono btn-action-primary" onclick="openLightbox('cert_nutanix_ncp.jpg', 'Nutanix Certified Professional: NCP-NS', 'ID: NTNX-NCP-582103', event)">
+                                &#128269; Inspect High-Res Scan
+                            </button>
+                            <a href="https://nutanix.com" target="_blank" class="btn-action-mono btn-action-outline">
+                                Verify on Nutanix Portal &#8599;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4: HackerRank SQL -->
+            <div class="c1-row" onclick="toggleC1Drawer(this, event)">
+                <div class="c1-serial">
+                    [04]
+                    <span class="sub">HR-SQL</span>
+                </div>
+                <div class="c1-main-info">
+                    <div class="c1-meta-row">
+                        <span class="issuer-tag">HACKERRANK</span>
+                        <span>ISSUED MAY 2024</span>
+                        <span>ID: HR-SQL-ADV-1938</span>
+                        <span>&#11044; PERMANENT</span>
+                    </div>
+                    <h3 class="c1-cert-title">
+                        SQL (Advanced) Certified
+                    </h3>
+                    <p class="c1-cert-desc">
+                        Advanced recursive common table expressions (CTEs), multi-level windowing partitions, execution plan cost optimization, and complex analytical aggregations.
+                    </p>
+                </div>
+                <div class="c1-skills">
+                    <span class="mono-pill">Recursive CTEs</span>
+                    <span class="mono-pill">Window Functions</span>
+                    <span class="mono-pill">Query Optimization</span>
+                    <span class="mono-pill">Stored Procs</span>
+                </div>
+                <div class="c1-actions">
+                    <div class="c1-thumb-btn" onclick="openLightbox('cert_hackerrank_sql.jpg', 'HackerRank SQL (Advanced) Certificate', 'ID: HR-SQL-ADV-1938 &bull; HackerRank Skills Certification', event)">
+                        <img src="cert_hackerrank_sql.jpg" alt="HackerRank SQL Certificate" class="c1-thumb-img" />
+                        <div class="c1-thumb-overlay">&#128269; ZOOM</div>
+                    </div>
+                    <span class="c1-expand-toggle">&#9662; Specification</span>
+                </div>
+
+                <!-- Expanding Drawer -->
+                <div class="c1-drawer">
+                    <div class="c1-drawer-preview">
+                        <img src="cert_hackerrank_sql.jpg" alt="HackerRank SQL Certificate" class="c1-drawer-img" onclick="openLightbox('cert_hackerrank_sql.jpg', 'HackerRank SQL (Advanced)', 'ID: HR-SQL-ADV-1938', event)" />
+                    </div>
+                    <div class="c1-drawer-details">
+                        <div>
+                            <table class="c1-spec-table">
+                                <tr>
+                                    <td class="label">CREDENTIAL CODE</td>
+                                    <td class="val">SQL-ADV-99PERCENTILE (Advanced Database Algorithms)</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">ISSUING ENTITY</td>
+                                    <td class="val">HackerRank Skills Verification Authority</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">VERIFICATION CHECKSUM</td>
+                                    <td class="val">SHA256: 3c92e105...fa552b (Public Proof Validated)</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">SYSTEM DOMAIN</td>
+                                    <td class="val">Database Query Optimization &amp; Complex Partitions</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button class="btn-action-mono btn-action-primary" onclick="openLightbox('cert_hackerrank_sql.jpg', 'HackerRank SQL (Advanced)', 'ID: HR-SQL-ADV-1938', event)">
+                                &#128269; Inspect High-Res Scan
+                            </button>
+                            <a href="https://hackerrank.com/certificates" target="_blank" class="btn-action-mono btn-action-outline">
+                                Verify on HackerRank &#8599;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         OPTION C2: MINIMALIST MONOCHROME SPEC SHEETS (DRAFTING TABLE)
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="option-section" id="opt-c2">
+        <div class="option-header">
+            <span class="option-badge">OPTION C2 &bull; TECHNICAL SPEC SHEETS &amp; FRAMED GALLERY</span>
+            <h2 class="option-title">Precision Drafting Frame Layout</h2>
+            <p class="option-desc">
+                Architectural blueprint drafting sheets featuring registration alignment marks (+), document proportion metadata, framed high-resolution scans, and verified competency manifests.
+            </p>
+            <div class="option-why">
+                &#9654; Click on any framed document preview to trigger full-scale lightbox examination.
+            </div>
+        </div>
+
+        <div class="c2-grid">
+            <!-- Sheet 1: Microsoft -->
+            <div class="c2-card">
+                <div class="c2-top-meta">
+                    <span>SPEC // DOC-001</span>
+                    <span>ISSUER: MICROSOFT</span>
+                    <span>STATUS: ACTIVE &bull; VERIFIED</span>
+                </div>
+                <div class="c2-frame" onclick="openLightbox('cert_microsoft_dp800.jpg', 'Microsoft Certified: Azure SQL AI Developer Associate (DP-800)', 'ID: MS-DP800-482910 &bull; Microsoft Corporation', event)">
+                    <img src="cert_microsoft_dp800.jpg" alt="Microsoft DP-800 Certificate" class="c2-img" />
+                    <div class="c2-view-badge">&#128269; Click to Inspect High-Res</div>
+                </div>
+                <h3 class="c2-title">Azure SQL AI Developer Associate (DP-800)</h3>
+                <p class="c2-desc">
+                    Comprehensive validation of SQL engine AI integration, semantic search indexing, vector vectorization pipelines, and low-latency embeddings on enterprise Azure infrastructure.
+                </p>
+                <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1.2rem;">
+                    <span class="mono-pill">Azure AI</span>
+                    <span class="mono-pill">Vector DB</span>
+                    <span class="mono-pill">Stored Procs</span>
+                    <span class="mono-pill">Semantic Cache</span>
+                </div>
+                <div class="c2-footer">
+                    <span class="c2-id-tag">ID: MS-DP800-482910</span>
+                    <button class="btn-action-mono btn-action-outline" onclick="openLightbox('cert_microsoft_dp800.jpg', 'Microsoft Certified: Azure SQL AI Developer Associate (DP-800)', 'ID: MS-DP800-482910', event)">
+                        Inspect Full Scan &#8599;
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sheet 2: AWS -->
+            <div class="c2-card">
+                <div class="c2-top-meta">
+                    <span>SPEC // DOC-002</span>
+                    <span>ISSUER: AMAZON WEB SERVICES</span>
+                    <span>STATUS: ACTIVE &bull; VERIFIED</span>
+                </div>
+                <div class="c2-frame" onclick="openLightbox('cert_aws_cloud.jpg', 'AWS Certified Cloud Practitioner', 'ID: AWS-CCP-928174 &bull; Amazon Web Services', event)">
+                    <img src="cert_aws_cloud.jpg" alt="AWS Cloud Certificate" class="c2-img" />
+                    <div class="c2-view-badge">&#128269; Click to Inspect High-Res</div>
+                </div>
+                <h3 class="c2-title">AWS Certified Cloud Practitioner</h3>
+                <p class="c2-desc">
+                    Architecting resilient AWS cloud solutions, multi-AZ high availability topologies, fine-grained IAM policy enforcement, and distributed microservices deployment.
+                </p>
+                <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1.2rem;">
+                    <span class="mono-pill">AWS ECS</span>
+                    <span class="mono-pill">VPC Peering</span>
+                    <span class="mono-pill">IAM Security</span>
+                    <span class="mono-pill">CloudWatch</span>
+                </div>
+                <div class="c2-footer">
+                    <span class="c2-id-tag">ID: AWS-CCP-928174</span>
+                    <button class="btn-action-mono btn-action-outline" onclick="openLightbox('cert_aws_cloud.jpg', 'AWS Certified Cloud Practitioner', 'ID: AWS-CCP-928174', event)">
+                        Inspect Full Scan &#8599;
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sheet 3: Nutanix -->
+            <div class="c2-card">
+                <div class="c2-top-meta">
+                    <span>SPEC // DOC-003</span>
+                    <span>ISSUER: NUTANIX INC</span>
+                    <span>STATUS: ACTIVE &bull; VERIFIED</span>
+                </div>
+                <div class="c2-frame" onclick="openLightbox('cert_nutanix_ncp.jpg', 'Nutanix Certified Professional: Network &amp; Security (NCP-NS)', 'ID: NTNX-NCP-582103 &bull; Nutanix Inc.', event)">
+                    <img src="cert_nutanix_ncp.jpg" alt="Nutanix NCP-NS Certificate" class="c2-img" />
+                    <div class="c2-view-badge">&#128269; Click to Inspect High-Res</div>
+                </div>
+                <h3 class="c2-title">Nutanix Certified Professional (NCP-NS)</h3>
+                <p class="c2-desc">
+                    Enterprise hyperconverged security, Flow software-defined microsegmentation, east-west network policy enforcement, and virtual firewall segregation.
+                </p>
+                <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1.2rem;">
+                    <span class="mono-pill">Flow SDN</span>
+                    <span class="mono-pill">Microsegmentation</span>
+                    <span class="mono-pill">HCI Security</span>
+                    <span class="mono-pill">Firewall Policy</span>
+                </div>
+                <div class="c2-footer">
+                    <span class="c2-id-tag">ID: NTNX-NCP-582103</span>
+                    <button class="btn-action-mono btn-action-outline" onclick="openLightbox('cert_nutanix_ncp.jpg', 'Nutanix Certified Professional: NCP-NS', 'ID: NTNX-NCP-582103', event)">
+                        Inspect Full Scan &#8599;
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sheet 4: HackerRank -->
+            <div class="c2-card">
+                <div class="c2-top-meta">
+                    <span>SPEC // DOC-004</span>
+                    <span>ISSUER: HACKERRANK</span>
+                    <span>STATUS: ACTIVE &bull; VERIFIED</span>
+                </div>
+                <div class="c2-frame" onclick="openLightbox('cert_hackerrank_sql.jpg', 'HackerRank SQL (Advanced) Certificate', 'ID: HR-SQL-ADV-1938 &bull; HackerRank Skills Certification', event)">
+                    <img src="cert_hackerrank_sql.jpg" alt="HackerRank SQL Certificate" class="c2-img" />
+                    <div class="c2-view-badge">&#128269; Click to Inspect High-Res</div>
+                </div>
+                <h3 class="c2-title">SQL (Advanced) Certified</h3>
+                <p class="c2-desc">
+                    High-performance query execution plan optimization, complex recursive CTE algorithms, partitioned sliding window aggregation, and database engine performance tuning.
+                </p>
+                <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1.2rem;">
+                    <span class="mono-pill">Recursive CTE</span>
+                    <span class="mono-pill">Window Aggregations</span>
+                    <span class="mono-pill">Execution Plans</span>
+                    <span class="mono-pill">Indexing</span>
+                </div>
+                <div class="c2-footer">
+                    <span class="c2-id-tag">ID: HR-SQL-ADV-1938</span>
+                    <button class="btn-action-mono btn-action-outline" onclick="openLightbox('cert_hackerrank_sql.jpg', 'HackerRank SQL (Advanced)', 'ID: HR-SQL-ADV-1938', event)">
+                        Inspect Full Scan &#8599;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         OPTION C3: INTERACTIVE SPLIT-PANE CREDENTIAL INSPECTOR
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="option-section" id="opt-c3">
+        <div class="option-header">
+            <span class="option-badge">OPTION C3 &bull; INTERACTIVE SPLIT-PANE INSPECTOR</span>
+            <h2 class="option-title">Master-Detail Registry Telemetry Viewport</h2>
+            <p class="option-desc">
+                An interactive split layout: the left side functions as an interactive credential register; clicking any item immediately projects its high-resolution scan, verification SHA-256 seal, and competencies onto the right inspection viewport.
+            </p>
+            <div class="option-why">
+                &#9654; Click between the 4 credentials on the left to test the live switching animation.
+            </div>
+        </div>
+
+        <div class="c3-inspector">
+            <!-- Master List -->
+            <div class="c3-master-list">
+                <div class="c3-item is-active" onclick="selectC3(0, this)">
+                    <div class="c3-item-top">
+                        <span>[01] MICROSOFT CORP</span>
+                        <span>NOV 2024</span>
+                    </div>
+                    <h4 class="c3-item-title">Azure SQL AI Developer Associate (DP-800)</h4>
+                    <p style="font-size:0.82rem; color:var(--text-dim); line-height:1.4;">
+                        Enterprise Vector Search, SQL AI Integrations, and low-latency embeddings on Azure SQL.
+                    </p>
+                    <div class="c3-item-skills">
+                        <span class="mono-pill">Vector Search</span>
+                        <span class="mono-pill">Azure AI</span>
+                        <span class="mono-pill">SQL Procs</span>
+                    </div>
+                </div>
+
+                <div class="c3-item" onclick="selectC3(1, this)">
+                    <div class="c3-item-top">
+                        <span>[02] AMAZON WEB SERVICES</span>
+                        <span>SEP 2024</span>
+                    </div>
+                    <h4 class="c3-item-title">AWS Certified Cloud Practitioner</h4>
+                    <p style="font-size:0.82rem; color:var(--text-dim); line-height:1.4;">
+                        Cloud infrastructure security, IAM policy models, VPC networking, and container orchestration.
+                    </p>
+                    <div class="c3-item-skills">
+                        <span class="mono-pill">AWS ECS</span>
+                        <span class="mono-pill">VPC</span>
+                        <span class="mono-pill">IAM</span>
+                    </div>
+                </div>
+
+                <div class="c3-item" onclick="selectC3(2, this)">
+                    <div class="c3-item-top">
+                        <span>[03] NUTANIX INC</span>
+                        <span>AUG 2024</span>
+                    </div>
+                    <h4 class="c3-item-title">Nutanix Certified Professional (NCP-NS)</h4>
+                    <p style="font-size:0.82rem; color:var(--text-dim); line-height:1.4;">
+                        Virtual microsegmentation, Flow SDN, zero-trust hyperconverged network defense.
+                    </p>
+                    <div class="c3-item-skills">
+                        <span class="mono-pill">Flow SDN</span>
+                        <span class="mono-pill">Microsegmentation</span>
+                        <span class="mono-pill">HCI</span>
+                    </div>
+                </div>
+
+                <div class="c3-item" onclick="selectC3(3, this)">
+                    <div class="c3-item-top">
+                        <span>[04] HACKERRANK</span>
+                        <span>MAY 2024</span>
+                    </div>
+                    <h4 class="c3-item-title">SQL (Advanced) Certified</h4>
+                    <p style="font-size:0.82rem; color:var(--text-dim); line-height:1.4;">
+                        Query optimization, recursive CTEs, analytic window partitions, cost plan tuning.
+                    </p>
+                    <div class="c3-item-skills">
+                        <span class="mono-pill">Recursive CTE</span>
+                        <span class="mono-pill">Windowing</span>
+                        <span class="mono-pill">Execution Plan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detail Pane Viewport -->
+            <div class="c3-detail-pane" id="c3-detail-box">
+                <div class="c3-detail-header">
+                    <div>
+                        <span class="c3-detail-id" id="c3-detail-id">CREDENTIAL // MS-DP800-482910</span>
+                        <h3 class="c3-detail-title" id="c3-detail-title">Azure SQL AI Developer Associate (DP-800)</h3>
+                    </div>
+                    <span class="mono-pill" style="border-color:var(--primary); font-weight:700;">&#11044; VALIDATED</span>
+                </div>
+
+                <div class="c3-detail-img-box" onclick="triggerCurrentC3Lightbox()">
+                    <img src="cert_microsoft_dp800.jpg" alt="Active Certificate Viewport" id="c3-detail-img" class="c3-detail-img" />
+                    <div class="c2-view-badge">&#128269; Click to Inspect Full Scan</div>
+                </div>
+
+                <div class="c3-detail-spec-grid">
+                    <div class="c3-spec-item">
+                        <span class="c3-spec-k">Issuing Authority</span>
+                        <span class="c3-spec-v" id="c3-detail-issuer">Microsoft Corporation</span>
+                    </div>
+                    <div class="c3-spec-item">
+                        <span class="c3-spec-k">Issuance Date</span>
+                        <span class="c3-spec-v" id="c3-detail-date">November 2024</span>
+                    </div>
+                    <div class="c3-spec-item">
+                        <span class="c3-spec-k">Domain Focus</span>
+                        <span class="c3-spec-v" id="c3-detail-focus">SQL AI &amp; Vector Databases</span>
+                    </div>
+                    <div class="c3-spec-item">
+                        <span class="c3-spec-k">Registry Proof</span>
+                        <span class="c3-spec-v" id="c3-detail-proof">SHA-256 Validated</span>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <p style="font-size:0.8rem; color:var(--text-dim);" id="c3-detail-desc">
+                        Official certification validating enterprise vector database architectures and generative AI integration.
+                    </p>
+                    <button class="btn-action-mono btn-action-primary" onclick="triggerCurrentC3Lightbox()">
+                        &#128269; Full Inspection
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         OPTION C4: TELEMETRY STREAM WITH INTEGRATED DOCUMENT SCANS
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="option-section" id="opt-c4" style="border-bottom:none;">
+        <div class="option-header">
+            <span class="option-badge">OPTION C4 &bull; CONTINUOUS TELEMETRY STREAM</span>
+            <h2 class="option-title">Sequential Verification Pipeline</h2>
+            <p class="option-desc">
+                A single unbroken spine connecting each credential node chronologically. Combines high-density engineering specs on the left with high-contrast framed document scans on the right.
+            </p>
+        </div>
+
+        <div class="c4-stream">
+            <!-- Node 1 -->
+            <div class="c4-node">
+                <div class="c4-node-marker">01</div>
+                <div class="c4-text-block">
+                    <div class="c4-telemetry-tag">
+                        <span class="c4-dot"></span>
+                        <span>MICROSOFT CORP &bull; NOV 2024 &bull; ID: MS-DP800-482910</span>
+                    </div>
+                    <h3 class="c4-node-title">Azure SQL AI Developer Associate (DP-800)</h3>
+                    <p class="c4-node-desc">
+                        Direct validation of database vector indexing, real-time embeddings computation, RAG integration, and scalable SQL stored procedure engineering.
+                    </p>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                        <span class="mono-pill">Azure AI</span>
+                        <span class="mono-pill">Vector DB</span>
+                        <span class="mono-pill">Semantic Cache</span>
+                    </div>
+                </div>
+                <div class="c4-img-frame" onclick="openLightbox('cert_microsoft_dp800.jpg', 'Microsoft Certified: Azure SQL AI Developer Associate (DP-800)', 'ID: MS-DP800-482910', event)">
+                    <img src="cert_microsoft_dp800.jpg" alt="Microsoft DP-800" class="c4-img" />
+                    <div class="c2-view-badge">&#128269; Zoom Scan</div>
+                </div>
+            </div>
+
+            <!-- Node 2 -->
+            <div class="c4-node">
+                <div class="c4-node-marker">02</div>
+                <div class="c4-text-block">
+                    <div class="c4-telemetry-tag">
+                        <span class="c4-dot"></span>
+                        <span>AMAZON WEB SERVICES &bull; SEP 2024 &bull; ID: AWS-CCP-928174</span>
+                    </div>
+                    <h3 class="c4-node-title">AWS Certified Cloud Practitioner</h3>
+                    <p class="c4-node-desc">
+                        Cloud architectural principles, high-availability multi-AZ deployment topologies, IAM zero-trust policy models, and distributed container systems.
+                    </p>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                        <span class="mono-pill">AWS ECS</span>
+                        <span class="mono-pill">VPC</span>
+                        <span class="mono-pill">IAM Policies</span>
+                    </div>
+                </div>
+                <div class="c4-img-frame" onclick="openLightbox('cert_aws_cloud.jpg', 'AWS Certified Cloud Practitioner', 'ID: AWS-CCP-928174', event)">
+                    <img src="cert_aws_cloud.jpg" alt="AWS Cloud Certificate" class="c4-img" />
+                    <div class="c2-view-badge">&#128269; Zoom Scan</div>
+                </div>
+            </div>
+
+            <!-- Node 3 -->
+            <div class="c4-node">
+                <div class="c4-node-marker">03</div>
+                <div class="c4-text-block">
+                    <div class="c4-telemetry-tag">
+                        <span class="c4-dot"></span>
+                        <span>NUTANIX INC &bull; AUG 2024 &bull; ID: NTNX-NCP-582103</span>
+                    </div>
+                    <h3 class="c4-node-title">Nutanix Certified Professional (NCP-NS)</h3>
+                    <p class="c4-node-desc">
+                        Microsegmentation, virtual software-defined networks (Flow SDN), network security policies, and hyperconverged infrastructure hardening.
+                    </p>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                        <span class="mono-pill">Flow SDN</span>
+                        <span class="mono-pill">Microsegmentation</span>
+                        <span class="mono-pill">HCI Security</span>
+                    </div>
+                </div>
+                <div class="c4-img-frame" onclick="openLightbox('cert_nutanix_ncp.jpg', 'Nutanix Certified Professional: NCP-NS', 'ID: NTNX-NCP-582103', event)">
+                    <img src="cert_nutanix_ncp.jpg" alt="Nutanix NCP-NS" class="c4-img" />
+                    <div class="c2-view-badge">&#128269; Zoom Scan</div>
+                </div>
+            </div>
+
+            <!-- Node 4 -->
+            <div class="c4-node">
+                <div class="c4-node-marker">04</div>
+                <div class="c4-text-block">
+                    <div class="c4-telemetry-tag">
+                        <span class="c4-dot"></span>
+                        <span>HACKERRANK &bull; MAY 2024 &bull; ID: HR-SQL-ADV-1938</span>
+                    </div>
+                    <h3 class="c4-node-title">SQL (Advanced) Certified</h3>
+                    <p class="c4-node-desc">
+                        Complex recursive common table expressions (CTEs), multi-level windowing partitions, execution plan cost optimization, and dynamic SQL query tuning.
+                    </p>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                        <span class="mono-pill">Recursive CTE</span>
+                        <span class="mono-pill">Windowing</span>
+                        <span class="mono-pill">Execution Plan</span>
+                    </div>
+                </div>
+                <div class="c4-img-frame" onclick="openLightbox('cert_hackerrank_sql.jpg', 'HackerRank SQL (Advanced)', 'ID: HR-SQL-ADV-1938', event)">
+                    <img src="cert_hackerrank_sql.jpg" alt="HackerRank SQL" class="c4-img" />
+                    <div class="c2-view-badge">&#128269; Zoom Scan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         LIGHTBOX MODAL FOR FULL-RES INSPECTION
+         ═════════════════════════════════════════════════════════════════ -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightboxOnBackdrop(event)">
+        <div class="lightbox-content">
+            <div class="lightbox-topbar">
+                <span id="lightboxMeta">CREDENTIAL SCAN INSPECTOR</span>
+                <button class="lightbox-close-btn" onclick="closeLightbox()">[ESC] CLOSE &times;</button>
+            </div>
+            <div class="lightbox-img-wrap">
+                <img src="" alt="High-Resolution Certificate Scan" id="lightboxImg" class="lightbox-img" />
+            </div>
+            <div class="lightbox-bottombar">
+                <span id="lightboxTitle" style="font-weight:700; font-size:0.95rem;">Certificate Document Scan</span>
+                <span style="font-family:'Space Mono', monospace; font-size:0.75rem; color:var(--text-dim);">&#11044; STRICT MONOCHROME ARCHIVE</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ── JAVASCRIPT CONTROLLERS ── -->
+    <script>
+        // ── Theme Management ──
+        function toggleTheme() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            if (isDark) {
+                icon.innerHTML = '&#9681;';
+                text.innerText = 'Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.innerHTML = '&#9680;';
+                text.innerText = 'Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initialize Theme from localStorage
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon').innerHTML = '&#9681;';
+                document.getElementById('theme-text').innerText = 'Light Mode';
+            }
+        })();
+
+        // ── Option C1: Drawer Toggle ──
+        function toggleC1Drawer(rowEl, event) {
+            // Prevent toggling if user clicked directly on zoom or external links
+            if (event && (event.target.closest('.c1-thumb-btn') || event.target.closest('a') || event.target.closest('button'))) {
+                return;
+            }
+            rowEl.classList.toggle('is-expanded');
+        }
+
+        // ── Option C3: Master-Detail Data Store ──
+        const c3Data = [
+            {
+                id: "CREDENTIAL // MS-DP800-482910",
+                title: "Azure SQL AI Developer Associate (DP-800)",
+                issuer: "Microsoft Corporation",
+                date: "November 2024",
+                focus: "SQL AI & Vector Databases",
+                proof: "SHA-256 Validated",
+                desc: "Official certification validating enterprise vector database architectures, generative AI integration, and low-latency embeddings on Azure SQL.",
+                img: "cert_microsoft_dp800.jpg"
+            },
+            {
+                id: "CREDENTIAL // AWS-CCP-928174",
+                title: "AWS Certified Cloud Practitioner",
+                issuer: "Amazon Web Services",
+                date: "September 2024",
+                focus: "Cloud Architecture & High-Availability",
+                proof: "AWS Credly Validated",
+                desc: "Cloud architectural principles, high-availability multi-AZ deployment strategies, IAM zero-trust models, and container orchestration.",
+                img: "cert_aws_cloud.jpg"
+            },
+            {
+                id: "CREDENTIAL // NTNX-NCP-582103",
+                title: "Nutanix Certified Professional (NCP-NS)",
+                issuer: "Nutanix Inc.",
+                date: "August 2024",
+                focus: "Software-Defined Networking & Microsegmentation",
+                proof: "Nutanix Registry Validated",
+                desc: "Enterprise hyperconverged security, Flow software-defined microsegmentation, east-west network policy enforcement, and virtual isolation.",
+                img: "cert_nutanix_ncp.jpg"
+            },
+            {
+                id: "CREDENTIAL // HR-SQL-ADV-1938",
+                title: "SQL (Advanced) Certified",
+                issuer: "HackerRank Skills Verification",
+                date: "May 2024",
+                focus: "Query Optimization & Complex Partitions",
+                proof: "Public Proof Validated",
+                desc: "Execution plan cost optimization, recursive common table expressions (CTEs), multi-level windowing partitions, and analytical queries.",
+                img: "cert_hackerrank_sql.jpg"
+            }
+        ];
+
+        let currentC3Index = 0;
+
+        function selectC3(index, el) {
+            currentC3Index = index;
+            document.querySelectorAll('.c3-item').forEach(item => item.classList.remove('is-active'));
+            el.classList.add('is-active');
+
+            const data = c3Data[index];
+            document.getElementById('c3-detail-id').innerText = data.id;
+            document.getElementById('c3-detail-title').innerText = data.title;
+            document.getElementById('c3-detail-issuer').innerText = data.issuer;
+            document.getElementById('c3-detail-date').innerText = data.date;
+            document.getElementById('c3-detail-focus').innerText = data.focus;
+            document.getElementById('c3-detail-proof').innerText = data.proof;
+            document.getElementById('c3-detail-desc').innerText = data.desc;
+            document.getElementById('c3-detail-img').src = data.img;
+        }
+
+        function triggerCurrentC3Lightbox() {
+            const data = c3Data[currentC3Index];
+            openLightbox(data.img, data.title, data.id + " • " + data.issuer);
+        }
+
+        // ── Lightbox Logic ──
+        function openLightbox(src, title, meta, event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            const modal = document.getElementById('lightboxModal');
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxTitle').innerText = title;
+            document.getElementById('lightboxMeta').innerText = meta || 'OFFICIAL VERIFIED DOCUMENT';
+            modal.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('is-open');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeLightboxOnBackdrop(event) {
+            if (event.target === document.getElementById('lightboxModal')) {
+                closeLightbox();
+            }
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

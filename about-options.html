@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me Option 1 Evolutions (Personal &amp; Techy — No Photo) — Pure Black &amp; White</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        ::selection, *::selection {
+            background: #000000 !important;
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+        }
+        ::-moz-selection, *::-moz-selection {
+            background: #000000 !important;
+            color: #ffffff !important;
+        }
+        body.dark-mode ::selection, body.dark-mode *::selection {
+            background: #ffffff !important;
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+        }
+        body.dark-mode ::-moz-selection, body.dark-mode *::-moz-selection {
+            background: #ffffff !important;
+            color: #000000 !important;
+        }
+
+        a, a:link, a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+        a:hover, a:focus, a:active {
+            color: inherit;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --text-main: #000000;
+            --text-dim: #555555;
+            --text-muted: #808080;
+            --border: #000000;
+            --border-subtle: #808080;
+            --primary: #000000;
+            --card-bg: #ffffff;
+            --code-bg: #e0e0e0;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        body.dark-mode {
+            --bg: #000000;
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --text-muted: #808080;
+            --border: #ffffff;
+            --border-subtle: #808080;
+            --primary: #ffffff;
+            --card-bg: #000000;
+            --code-bg: #2a2a2a;
+            --nav-bg: rgba(0, 0, 0, 0.95);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            padding: 1.5rem 4vw 8rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        /* Strict monochrome filter */
+        img, svg, i[class*="devicon-"] {
+            filter: grayscale(100%) contrast(120%) !important;
+        }
+
+        /* ── STICKY TOP CONTROLLER ── */
+        .top-bar {
+            position: sticky;
+            top: 1rem;
+            z-index: 1000;
+            background: var(--nav-bg);
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            padding: 0.85rem 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            margin-bottom: 3.5rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .top-bar-left h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-bar-left h1 span.mono-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            border: 1.5px solid var(--border);
+            padding: 2px 7px;
+            border-radius: 3px;
+            font-weight: 700;
+            background: var(--bg);
+        }
+
+        .top-bar-left p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .nav-pills {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .nav-pill {
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border: 1.5px solid var(--border-subtle);
+            border-radius: 4px;
+            background: var(--bg);
+            transition: all 0.2s ease;
+        }
+
+        .nav-pill:hover {
+            border-color: var(--border);
+            background: var(--text-main);
+            color: var(--bg);
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            color: var(--text-main);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.45rem 0.9rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--text-main);
+            color: var(--bg);
+        }
+
+        /* ── SECTION SHELL ── */
+        .option-section {
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            background: var(--card-bg);
+            padding: 2.8rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1.5px solid var(--border);
+            padding-bottom: 1.4rem;
+            margin-bottom: 2.5rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .opt-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border: 1.5px solid var(--border);
+            border-radius: 3px;
+            background: var(--text-main);
+            color: var(--bg);
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .opt-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+        }
+
+        .opt-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+
+        .use-this-btn {
+            background: var(--bg);
+            color: var(--text-main);
+            border: 1.5px solid var(--border);
+            padding: 0.45rem 1rem;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .use-this-btn:hover {
+            background: var(--text-main);
+            color: var(--bg);
+        }
+
+        /* ── SHARED CLEAN LEFT NARRATIVE (4 BOXES REMOVED) ── */
+        .story-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: stretch;
+        }
+
+        .story-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+
+        .story-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .story-eyebrow .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--text-main);
+            border-radius: 50%;
+        }
+
+        .story-headline {
+            font-size: 2.3rem;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            line-height: 1.2;
+        }
+
+        .story-lead {
+            font-size: 1.12rem;
+            font-weight: 600;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        .story-p {
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: var(--text-dim);
+        }
+
+        .story-quote-card {
+            border-left: 3px solid var(--border);
+            padding: 0.9rem 1.4rem;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--text-main);
+            background: var(--code-bg);
+            border-radius: 0 4px 4px 0;
+            margin: 0.2rem 0;
+            line-height: 1.6;
+        }
+
+        /* ── RIGHT SIDE: VARIATION 1A (PRINCIPLES & MINDSET) ── */
+        .right-card-principles {
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            padding: 2rem;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .rc-header {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            border-bottom: 1.5px solid var(--border);
+            padding-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .principle-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px dashed var(--border-subtle);
+        }
+
+        .principle-block:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .principle-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        .principle-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+        }
+
+        .principle-body {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-dim);
+        }
+
+        /* ── RIGHT SIDE: VARIATION 1B (BEYOND CODE / LIFESTYLE & PURSUITS) ── */
+        .right-card-pursuits {
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            padding: 2rem;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.2rem;
+        }
+
+        .pursuit-row {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border-subtle);
+        }
+
+        .pursuit-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .pursuit-icon-box {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 800;
+            width: 38px;
+            height: 38px;
+            border: 1.5px solid var(--border);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: var(--code-bg);
+        }
+
+        .pursuit-content h4 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.2px;
+        }
+
+        .pursuit-content p {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: var(--text-dim);
+        }
+
+        /* ── RIGHT SIDE: VARIATION 1C (THE CRAFT & PHILOSOPHY) ── */
+        .right-card-craft {
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            padding: 2.2rem;
+            background: var(--code-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .craft-quote-box {
+            margin: 1.5rem 0;
+        }
+
+        .craft-quote {
+            font-size: 1.25rem;
+            font-weight: 800;
+            line-height: 1.4;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.8rem;
+        }
+
+        .craft-sub {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--text-dim);
+        }
+
+        .craft-list {
+            margin-top: 1.5rem;
+            border-top: 1.5px solid var(--border);
+            padding-top: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .craft-list-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ── RIGHT SIDE: VARIATION 1D (INTERACTIVE PERSPECTIVES) ── */
+        .right-card-interactive {
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            padding: 2rem;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tab-controls {
+            display: flex;
+            gap: 6px;
+            border-bottom: 1.5px solid var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border: 1.5px solid var(--border);
+            border-radius: 3px;
+            background: var(--bg);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--text-main);
+            color: var(--bg);
+        }
+
+        .tab-content-panel {
+            display: none;
+            animation: fadeIn 0.25s ease;
+            min-height: 180px;
+        }
+
+        .tab-content-panel.active {
+            display: block;
+        }
+
+        .tab-content-panel h4 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.2px;
+        }
+
+        .tab-content-panel p {
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--text-dim);
+            margin-bottom: 0.8rem;
+        }
+
+        /* ── RIGHT SIDE: VARIATION 1E (EDITORIAL MANIFESTO FRAME) ── */
+        .right-card-editorial {
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            padding: 2.4rem;
+            background: var(--bg);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .corner-tick {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-color: var(--border);
+            border-style: solid;
+        }
+        .corner-tick.tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+        .corner-tick.tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
+        .corner-tick.bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
+        .corner-tick.br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+        .editorial-lead {
+            font-size: 1.45rem;
+            font-weight: 800;
+            line-height: 1.35;
+            letter-spacing: -0.4px;
+            margin-bottom: 1.2rem;
+        }
+
+        .editorial-sub {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--text-dim);
+        }
+
+        .editorial-signoff {
+            margin-top: 2rem;
+            border-top: 1.5px solid var(--border);
+            padding-top: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .signoff-name {
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
+
+        .signoff-loc {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ── TOAST NOTIFICATION ── */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--text-main);
+            color: var(--bg);
+            padding: 0.8rem 1.4rem;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 99999;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 950px) {
+            .story-layout { grid-template-columns: 1fr; gap: 2rem; }
+            .option-section { padding: 1.6rem; }
+            .story-headline { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── TOP CONTROLLER ── -->
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <h1>OPTION 1 EVOLUTIONS <span class="mono-tag">PERSONAL &amp; TECHY</span></h1>
+            <p>Left side cleaned up (4 boxes removed). 5 fresh, high-conviction designs for the right side!</p>
+        </div>
+        <div class="nav-pills">
+            <a href="#opt1a" class="nav-pill">1A. Mindset Principles</a>
+            <a href="#opt1b" class="nav-pill">1B. Off-Duty &amp; Life</a>
+            <a href="#opt1c" class="nav-pill">1C. Craft &amp; Ethos</a>
+            <a href="#opt1d" class="nav-pill">1D. Interactive Tabs</a>
+            <a href="#opt1e" class="nav-pill">1E. Editorial Manifesto</a>
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">☀️ / 🌙 TOGGLE THEME</button>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         VARIATION 1A: OPTION 1 WITH PRINCIPLES & MINDSET REFLECTIONS
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section id="opt1a" class="option-section">
+        <div class="option-header">
+            <div>
+                <span class="opt-badge">VARIATION 1A</span>
+                <h2 class="opt-title">Option 1 + Core Principles &amp; Mindset Reflections</h2>
+                <p class="opt-desc">Left side has the personal narrative (4 boxes removed). Right side features 3 thoughtful personal engineering reflections &mdash; deeply authentic and human.</p>
+            </div>
+            <button class="use-this-btn" onclick="copyOptionHtml('code-opt1a')">Copy Variation 1A HTML</button>
+        </div>
+
+        <div class="story-layout">
+            <!-- Left Side: Cleaned up narrative without the 4 bottom boxes -->
+            <div class="story-left">
+                <div class="story-eyebrow">
+                    <span class="dot"></span>
+                    <span>#01 The Human Behind The Code</span>
+                </div>
+                <h3 class="story-headline">Driven by curiosity, grounded by craft.</h3>
+                <p class="story-lead">
+                    Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+                </p>
+                <p class="story-p">
+                    In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+                </p>
+                <div class="story-quote-card">
+                    &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+                </div>
+                <p class="story-p">
+                    Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+                </p>
+            </div>
+
+            <!-- Right Side: Principles & Mindset -->
+            <div class="right-card-principles">
+                <div class="rc-header">
+                    <span>CORE PRINCIPLES</span>
+                    <span>[MINDSET]</span>
+                </div>
+
+                <div class="principle-block">
+                    <div class="principle-meta">01 / INVISIBLE CRAFTSMANSHIP</div>
+                    <div class="principle-title">Pride in what cannot be seen.</div>
+                    <div class="principle-body">
+                        The real test of software isn't how pretty it looks on day one &mdash; it's how calmly it handles edge cases, network spikes, and failure scenarios when nobody is watching.
+                    </div>
+                </div>
+
+                <div class="principle-block">
+                    <div class="principle-meta">02 / ENDGAME THINKING</div>
+                    <div class="principle-title">Chess tactics applied to systems.</div>
+                    <div class="principle-body">
+                        In chess and in software design, rushing leads to blunders. Real mastery is knowing the end state early and making every architectural decision purposeful.
+                    </div>
+                </div>
+
+                <div class="principle-block">
+                    <div class="principle-meta">03 / RADICAL CLARITY</div>
+                    <div class="principle-title">Simplicity as a discipline.</div>
+                    <div class="principle-body">
+                        Any system can be over-complicated. The true art is distilling a complex business requirement into clean code and clear data boundaries.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <template id="code-opt1a">
+<!-- About Me: Variation 1A (Story + Principles) -->
+<section id="about" class="about-section glass-panel">
+    <div class="story-layout">
+        <div class="story-left">
+            <div class="story-eyebrow">
+                <span class="dot"></span>
+                <span>#01 The Human Behind The Code</span>
+            </div>
+            <h2 class="story-headline">Driven by curiosity, grounded by craft.</h2>
+            <p class="story-lead">
+                Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+            </p>
+            <p class="story-p">
+                In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+            </p>
+            <div class="story-quote-card">
+                &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+            </div>
+            <p class="story-p">
+                Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+            </p>
+        </div>
+
+        <div class="right-card-principles">
+            <div class="rc-header">
+                <span>CORE PRINCIPLES</span>
+                <span>[MINDSET]</span>
+            </div>
+
+            <div class="principle-block">
+                <div class="principle-meta">01 / INVISIBLE CRAFTSMANSHIP</div>
+                <div class="principle-title">Pride in what cannot be seen.</div>
+                <div class="principle-body">
+                    The real test of software isn't how pretty it looks on day one &mdash; it's how calmly it handles edge cases, network spikes, and failure scenarios when nobody is watching.
+                </div>
+            </div>
+
+            <div class="principle-block">
+                <div class="principle-meta">02 / ENDGAME THINKING</div>
+                <div class="principle-title">Chess tactics applied to systems.</div>
+                <div class="principle-body">
+                    In chess and in software design, rushing leads to blunders. Real mastery is knowing the end state early and making every architectural decision purposeful.
+                </div>
+            </div>
+
+            <div class="principle-block">
+                <div class="principle-meta">03 / RADICAL CLARITY</div>
+                <div class="principle-title">Simplicity as a discipline.</div>
+                <div class="principle-body">
+                    Any system can be over-complicated. The true art is distilling a complex business requirement into clean code and clear data boundaries.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        </template>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         VARIATION 1B: OPTION 1 WITH BEYOND THE SCREEN / PURSUITS
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section id="opt1b" class="option-section">
+        <div class="option-header">
+            <div>
+                <span class="opt-badge">VARIATION 1B</span>
+                <h2 class="opt-title">Option 1 + Life Beyond The Screen</h2>
+                <p class="opt-desc">Right side showcases your personal interests and off-duty lifestyle: chess strategy, focus soundtracks, curiosity rabbit holes, and mindful resets.</p>
+            </div>
+            <button class="use-this-btn" onclick="copyOptionHtml('code-opt1b')">Copy Variation 1B HTML</button>
+        </div>
+
+        <div class="story-layout">
+            <div class="story-left">
+                <div class="story-eyebrow">
+                    <span class="dot"></span>
+                    <span>#01 The Human Behind The Code</span>
+                </div>
+                <h3 class="story-headline">Driven by curiosity, grounded by craft.</h3>
+                <p class="story-lead">
+                    Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+                </p>
+                <p class="story-p">
+                    In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+                </p>
+                <div class="story-quote-card">
+                    &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+                </div>
+                <p class="story-p">
+                    Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+                </p>
+            </div>
+
+            <!-- Right Side: Beyond The Screen -->
+            <div class="right-card-pursuits">
+                <div class="rc-header">
+                    <span>OFF THE CLOCK</span>
+                    <span>[LIFE BEYOND CODE]</span>
+                </div>
+
+                <div class="pursuit-row">
+                    <div class="pursuit-icon-box">♟</div>
+                    <div class="pursuit-content">
+                        <h4>The 64 Squares (Chess)</h4>
+                        <p>Rapid &amp; blitz player. Chess taught me that patience beats panic and strategy beats brute force &mdash; lessons that carry straight into debugging concurrency.</p>
+                    </div>
+                </div>
+
+                <div class="pursuit-row">
+                    <div class="pursuit-icon-box">🎧</div>
+                    <div class="pursuit-content">
+                        <h4>Focus Frequencies</h4>
+                        <p>Coding to deep synthwave, atmospheric lo-fi, and post-rock. A steady rhythm turns long hours of distributed systems design into pure flow state.</p>
+                    </div>
+                </div>
+
+                <div class="pursuit-row">
+                    <div class="pursuit-icon-box">📖</div>
+                    <div class="pursuit-content">
+                        <h4>Curiosity Rabbit Holes</h4>
+                        <p>Reading about early computing pioneers, cognitive psychology, and mechanical watch movements. Understanding how humans think helps build better tools.</p>
+                    </div>
+                </div>
+
+                <div class="pursuit-row">
+                    <div class="pursuit-icon-box">☕</div>
+                    <div class="pursuit-content">
+                        <h4>The Mindful Reset</h4>
+                        <p>Slow mornings, evening walks around Coimbatore without a phone, and taking time to let complex architectural ideas untangle themselves.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <template id="code-opt1b">
+<!-- About Me: Variation 1B (Story + Off-Duty Pursuits) -->
+<section id="about" class="about-section glass-panel">
+    <div class="story-layout">
+        <div class="story-left">
+            <div class="story-eyebrow">
+                <span class="dot"></span>
+                <span>#01 The Human Behind The Code</span>
+            </div>
+            <h2 class="story-headline">Driven by curiosity, grounded by craft.</h2>
+            <p class="story-lead">
+                Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+            </p>
+            <p class="story-p">
+                In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+            </p>
+            <div class="story-quote-card">
+                &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+            </div>
+            <p class="story-p">
+                Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+            </p>
+        </div>
+
+        <div class="right-card-pursuits">
+            <div class="rc-header">
+                <span>OFF THE CLOCK</span>
+                <span>[LIFE BEYOND CODE]</span>
+            </div>
+
+            <div class="pursuit-row">
+                <div class="pursuit-icon-box">♟</div>
+                <div class="pursuit-content">
+                    <h4>The 64 Squares (Chess)</h4>
+                    <p>Rapid &amp; blitz player. Chess taught me that patience beats panic and strategy beats brute force &mdash; lessons that carry straight into debugging concurrency.</p>
+                </div>
+            </div>
+
+            <div class="pursuit-row">
+                <div class="pursuit-icon-box">🎧</div>
+                <div class="pursuit-content">
+                    <h4>Focus Frequencies</h4>
+                    <p>Coding to deep synthwave, atmospheric lo-fi, and post-rock. A steady rhythm turns long hours of distributed systems design into pure flow state.</p>
+                </div>
+            </div>
+
+            <div class="pursuit-row">
+                <div class="pursuit-icon-box">📖</div>
+                <div class="pursuit-content">
+                    <h4>Curiosity Rabbit Holes</h4>
+                    <p>Reading about early computing pioneers, cognitive psychology, and mechanical watch movements. Understanding how humans think helps build better tools.</p>
+                </div>
+            </div>
+
+            <div class="pursuit-row">
+                <div class="pursuit-icon-box">☕</div>
+                <div class="pursuit-content">
+                    <h4>The Mindful Reset</h4>
+                    <p>Slow mornings, evening walks around Coimbatore without a phone, and taking time to let complex architectural ideas untangle themselves.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        </template>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         VARIATION 1C: OPTION 1 WITH CRAFT & PHILOSOPHY CARD
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section id="opt1c" class="option-section">
+        <div class="option-header">
+            <div>
+                <span class="opt-badge">VARIATION 1C</span>
+                <h2 class="opt-title">Option 1 + The Maker's Craft &amp; Ethos</h2>
+                <p class="opt-desc">Right side provides a personal perspective on engineering as a craft: the joy of writing clean code, avoiding bloat, and treating systems with care.</p>
+            </div>
+            <button class="use-this-btn" onclick="copyOptionHtml('code-opt1c')">Copy Variation 1C HTML</button>
+        </div>
+
+        <div class="story-layout">
+            <div class="story-left">
+                <div class="story-eyebrow">
+                    <span class="dot"></span>
+                    <span>#01 The Human Behind The Code</span>
+                </div>
+                <h3 class="story-headline">Driven by curiosity, grounded by craft.</h3>
+                <p class="story-lead">
+                    Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+                </p>
+                <p class="story-p">
+                    In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+                </p>
+                <div class="story-quote-card">
+                    &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+                </div>
+                <p class="story-p">
+                    Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+                </p>
+            </div>
+
+            <!-- Right Side: Craft & Ethos -->
+            <div class="right-card-craft">
+                <div class="rc-header">
+                    <span>THE MAKER'S ETHOS</span>
+                    <span>[CRAFT]</span>
+                </div>
+
+                <div class="craft-quote-box">
+                    <div class="craft-quote">&ldquo;Code is read ten times more often than it is written. Write with empathy for the next human.&rdquo;</div>
+                    <div class="craft-sub">
+                        I see engineering not as a race to churn out features, but as the quiet discipline of creating reliable, well-documented, maintainable foundations that teams enjoy extending.
+                    </div>
+                </div>
+
+                <div class="craft-list">
+                    <div class="craft-list-item">&bull; Prefer simple primitives over clever abstractions</div>
+                    <div class="craft-list-item">&bull; Zero tolerance for silent database failures</div>
+                    <div class="craft-list-item">&bull; Protect deep focus; eliminate context switching</div>
+                    <div class="craft-list-item">&bull; Always leave the codebase cleaner than you found it</div>
+                </div>
+            </div>
+        </div>
+
+        <template id="code-opt1c">
+<!-- About Me: Variation 1C (Story + Craft Ethos) -->
+<section id="about" class="about-section glass-panel">
+    <div class="story-layout">
+        <div class="story-left">
+            <div class="story-eyebrow">
+                <span class="dot"></span>
+                <span>#01 The Human Behind The Code</span>
+            </div>
+            <h2 class="story-headline">Driven by curiosity, grounded by craft.</h2>
+            <p class="story-lead">
+                Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+            </p>
+            <p class="story-p">
+                In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+            </p>
+            <div class="story-quote-card">
+                &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+            </div>
+            <p class="story-p">
+                Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+            </p>
+        </div>
+
+        <div class="right-card-craft">
+            <div class="rc-header">
+                <span>THE MAKER'S ETHOS</span>
+                <span>[CRAFT]</span>
+            </div>
+
+            <div class="craft-quote-box">
+                <div class="craft-quote">&ldquo;Code is read ten times more often than it is written. Write with empathy for the next human.&rdquo;</div>
+                <div class="craft-sub">
+                    I see engineering not as a race to churn out features, but as the quiet discipline of creating reliable, well-documented, maintainable foundations that teams enjoy extending.
+                </div>
+            </div>
+
+            <div class="craft-list">
+                <div class="craft-list-item">&bull; Prefer simple primitives over clever abstractions</div>
+                <div class="craft-list-item">&bull; Zero tolerance for silent database failures</div>
+                <div class="craft-list-item">&bull; Protect deep focus; eliminate context switching</div>
+                <div class="craft-list-item">&bull; Always leave the codebase cleaner than you found it</div>
+            </div>
+        </div>
+    </div>
+</section>
+        </template>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         VARIATION 1D: OPTION 1 WITH INTERACTIVE PERSPECTIVES
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section id="opt1d" class="option-section">
+        <div class="option-header">
+            <div>
+                <span class="opt-badge">VARIATION 1D</span>
+                <h2 class="opt-title">Option 1 + Interactive Persona Tabs</h2>
+                <p class="opt-desc">Right side lets visitors click between 3 personal perspectives: <em>What Drives Me</em>, <em>Life Off-Duty</em>, and <em>How I Work</em>.</p>
+            </div>
+            <button class="use-this-btn" onclick="copyOptionHtml('code-opt1d')">Copy Variation 1D HTML</button>
+        </div>
+
+        <div class="story-layout">
+            <div class="story-left">
+                <div class="story-eyebrow">
+                    <span class="dot"></span>
+                    <span>#01 The Human Behind The Code</span>
+                </div>
+                <h3 class="story-headline">Driven by curiosity, grounded by craft.</h3>
+                <p class="story-lead">
+                    Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+                </p>
+                <p class="story-p">
+                    In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+                </p>
+                <div class="story-quote-card">
+                    &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+                </div>
+                <p class="story-p">
+                    Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+                </p>
+            </div>
+
+            <!-- Right Side: Interactive Tabs -->
+            <div class="right-card-interactive">
+                <div>
+                    <div class="tab-controls">
+                        <button class="tab-btn active" onclick="switchSideTab(this, 'stab-drives')">What Drives Me</button>
+                        <button class="tab-btn" onclick="switchSideTab(this, 'stab-offduty')">Life Off-Duty</button>
+                        <button class="tab-btn" onclick="switchSideTab(this, 'stab-work')">How I Work</button>
+                    </div>
+
+                    <div id="stab-drives" class="tab-content-panel active">
+                        <h4>Solving puzzles that matter.</h4>
+                        <p>
+                            What keeps me motivated is the feeling of untangling a genuinely hard engineering problem &mdash; whether that's synchronizing state across distributed nodes without race conditions or designing AI agent workflows that don't hallucinate.
+                        </p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+                            "I find genuine joy in turning chaos into quiet order."
+                        </p>
+                    </div>
+
+                    <div id="stab-offduty" class="tab-content-panel">
+                        <h4>Chess, tea, and music.</h4>
+                        <p>
+                            When I close my editor, I play chess (1500+ Rapid), explore tactical endgames, listen to atmospheric synthwave, and read books on human behavior and computing pioneers.
+                        </p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+                            "Stepping away is often how the best solutions are born."
+                        </p>
+                    </div>
+
+                    <div id="stab-work" class="tab-content-panel">
+                        <h4>Calm, candid, and high-ownership.</h4>
+                        <p>
+                            I thrive in teams that communicate directly, value substance over noise, and take pride in what they ship. I approach every task with high accountability and low ego.
+                        </p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+                            "Always ready to listen, learn, and put in the work."
+                        </p>
+                    </div>
+                </div>
+
+                <div style="border-top: 1.5px solid var(--border); padding-top: 1rem; font-family: 'Space Mono', monospace; font-size: 0.72rem; display: flex; justify-content: space-between;">
+                    <span>LOCATION: COIMBATORE, IN</span>
+                    <span>SKCET B.TECH IT '27</span>
+                </div>
+            </div>
+        </div>
+
+        <template id="code-opt1d">
+<!-- About Me: Variation 1D (Story + Interactive Persona Tabs) -->
+<section id="about" class="about-section glass-panel">
+    <div class="story-layout">
+        <div class="story-left">
+            <div class="story-eyebrow">
+                <span class="dot"></span>
+                <span>#01 The Human Behind The Code</span>
+            </div>
+            <h2 class="story-headline">Driven by curiosity, grounded by craft.</h2>
+            <p class="story-lead">
+                Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+            </p>
+            <p class="story-p">
+                In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+            </p>
+            <div class="story-quote-card">
+                &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+            </div>
+            <p class="story-p">
+                Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+            </p>
+        </div>
+
+        <div class="right-card-interactive">
+            <div>
+                <div class="tab-controls">
+                    <button class="tab-btn active" onclick="switchSideTab(this, 'stab-drives')">What Drives Me</button>
+                    <button class="tab-btn" onclick="switchSideTab(this, 'stab-offduty')">Life Off-Duty</button>
+                    <button class="tab-btn" onclick="switchSideTab(this, 'stab-work')">How I Work</button>
+                </div>
+
+                <div id="stab-drives" class="tab-content-panel active">
+                    <h4>Solving puzzles that matter.</h4>
+                    <p>What keeps me motivated is the feeling of untangling a genuinely hard engineering problem &mdash; turning chaos into quiet, reliable order.</p>
+                </div>
+
+                <div id="stab-offduty" class="tab-content-panel">
+                    <h4>Chess, tea, and music.</h4>
+                    <p>When I close my editor, I play chess (1500+ Rapid), explore tactical endgames, listen to atmospheric synthwave, and read books on human behavior.</p>
+                </div>
+
+                <div id="stab-work" class="tab-content-panel">
+                    <h4>Calm, candid, and high-ownership.</h4>
+                    <p>I thrive in teams that communicate directly, value substance over noise, and take pride in what they ship. High accountability, low ego.</p>
+                </div>
+            </div>
+
+            <div style="border-top: 1.5px solid var(--border); padding-top: 1rem; font-family: 'Space Mono', monospace; font-size: 0.72rem; display: flex; justify-content: space-between;">
+                <span>LOCATION: COIMBATORE, IN</span>
+                <span>SKCET B.TECH IT '27</span>
+            </div>
+        </div>
+    </div>
+</section>
+        </template>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         VARIATION 1E: OPTION 1 WITH EDITORIAL MANIFESTO FRAME
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section id="opt1e" class="option-section">
+        <div class="option-header">
+            <div>
+                <span class="opt-badge">VARIATION 1E</span>
+                <h2 class="opt-title">Option 1 + Editorial Manifesto Frame</h2>
+                <p class="opt-desc">Right side is an airy, minimalist architectural manifesto framed with subtle corner viewfinder marks. Sophisticated, bold, and personal.</p>
+            </div>
+            <button class="use-this-btn" onclick="copyOptionHtml('code-opt1e')">Copy Variation 1E HTML</button>
+        </div>
+
+        <div class="story-layout">
+            <div class="story-left">
+                <div class="story-eyebrow">
+                    <span class="dot"></span>
+                    <span>#01 The Human Behind The Code</span>
+                </div>
+                <h3 class="story-headline">Driven by curiosity, grounded by craft.</h3>
+                <p class="story-lead">
+                    Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+                </p>
+                <p class="story-p">
+                    In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+                </p>
+                <div class="story-quote-card">
+                    &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+                </div>
+                <p class="story-p">
+                    Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+                </p>
+            </div>
+
+            <!-- Right Side: Editorial Manifesto Frame -->
+            <div class="right-card-editorial">
+                <span class="corner-tick tl"></span>
+                <span class="corner-tick tr"></span>
+                <span class="corner-tick bl"></span>
+                <span class="corner-tick br"></span>
+
+                <div>
+                    <div style="font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1.2rem;">
+                        // PERSONAL PHILOSOPHY
+                    </div>
+                    <div class="editorial-lead">
+                        &ldquo;Good architecture isn't about adding until nothing more can be added. It's about removing until nothing more can be taken away.&rdquo;
+                    </div>
+                    <div class="editorial-sub">
+                        I aim to be the engineer who brings quiet confidence to high-stakes projects &mdash; approaching complex systems with patience, clear logic, and respect for every teammate who touches the code.
+                    </div>
+                </div>
+
+                <div class="editorial-signoff">
+                    <div>
+                        <div class="signoff-name">Thivakar S P</div>
+                        <div class="signoff-loc">System Architect &bull; Coimbatore, IN</div>
+                    </div>
+                    <div style="font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 800; border: 1.5px solid var(--border); padding: 4px 10px; border-radius: 3px;">
+                        READY TO BUILD &rarr;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <template id="code-opt1e">
+<!-- About Me: Variation 1E (Story + Editorial Manifesto) -->
+<section id="about" class="about-section glass-panel">
+    <div class="story-layout">
+        <div class="story-left">
+            <div class="story-eyebrow">
+                <span class="dot"></span>
+                <span>#01 The Human Behind The Code</span>
+            </div>
+            <h2 class="story-headline">Driven by curiosity, grounded by craft.</h2>
+            <p class="story-lead">
+                Hey, I'm Thivakar. Ever since I was a kid taking apart old toys just to see how the gears meshed, I've had a fascination with what makes things work beneath the surface.
+            </p>
+            <p class="story-p">
+                In software, that curiosity naturally pulled me toward backend architecture. While most people are drawn to shiny visual interfaces, I found my thrill in the quiet machinery: designing databases that never lose a byte, untangling race conditions, and creating systems that stay fast and calm even under heavy traffic.
+            </p>
+            <div class="story-quote-card">
+                &ldquo;I believe the best technology is humble and invisible &mdash; it does its job so reliably that users take it for granted.&rdquo;
+            </div>
+            <p class="story-p">
+                Currently pursuing my B.Tech at SKCET (graduating 2027). Beyond code, I find balance over a chessboard analyzing tactical endgames, experimenting with mechanical keyboards, and brewing a patient cup of tea.
+            </p>
+        </div>
+
+        <div class="right-card-editorial">
+            <span class="corner-tick tl"></span>
+            <span class="corner-tick tr"></span>
+            <span class="corner-tick bl"></span>
+            <span class="corner-tick br"></span>
+
+            <div>
+                <div style="font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1.2rem;">
+                    // PERSONAL PHILOSOPHY
+                </div>
+                <div class="editorial-lead">
+                    &ldquo;Good architecture isn't about adding until nothing more can be added. It's about removing until nothing more can be taken away.&rdquo;
+                </div>
+                <div class="editorial-sub">
+                    I aim to be the engineer who brings quiet confidence to high-stakes projects &mdash; approaching complex systems with patience, clear logic, and respect for every teammate who touches the code.
+                </div>
+            </div>
+
+            <div class="editorial-signoff">
+                <div>
+                    <div class="signoff-name">Thivakar S P</div>
+                    <div class="signoff-loc">System Architect &bull; Coimbatore, IN</div>
+                </div>
+                <div style="font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 800; border: 1.5px solid var(--border); padding: 4px 10px; border-radius: 3px;">
+                    READY TO BUILD &rarr;
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        </template>
+    </section>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast">HTML template copied to clipboard!</div>
+
+    <script>
+        // Theme toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Side tab switching for 1D
+        function switchSideTab(tabBtn, targetId) {
+            const parent = tabBtn.closest('.right-card-interactive');
+            if (!parent) return;
+            parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            parent.querySelectorAll('.tab-content-panel').forEach(p => p.classList.remove('active'));
+            tabBtn.classList.add('active');
+            const target = parent.querySelector('#' + targetId);
+            if (target) target.classList.add('active');
+        }
+
+        // Copy template code
+        function copyOptionHtml(templateId) {
+            const tmpl = document.getElementById(templateId);
+            if (!tmpl) return;
+            const code = tmpl.innerHTML.trim();
+            navigator.clipboard.writeText(code).then(() => {
+                showToast("HTML copied to clipboard! Ready to paste.");
+            }).catch(() => {
+                showToast("Failed to auto-copy. Select and copy from DevTools.");
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

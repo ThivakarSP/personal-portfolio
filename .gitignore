@@ -1,0 +1,31 @@
+# Compiled Binaries & Executables
+*.exe
+*.dll
+*.obj
+*.bin
+
+# Local Development & Test Servers
+Server.cs
+Server.exe
+serve.ps1
+serve_tcp.ps1
+
+# Analysis & Scratch Utility Scripts
+find_colors.ps1
+find_greys.ps1
+find_rgba.ps1
+gen.ps1
+gen_ascii.py
+generate_ascii.py
+extract_sprites.bat
+
+# Scratch Text Dumps & Intermediate ASCII tests
+resume_extract.txt
+ascii*.txt
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+*.tmp
+.vscode/
+.idea/

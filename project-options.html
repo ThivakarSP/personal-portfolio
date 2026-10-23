@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architectural Project Dossier Variations (1A Evolutions) — Pure Black &amp; White</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --text-main: #000000;
+            --text-dim: #666666;
+            --border: rgba(0, 0, 0, 0.12);
+            --hairline: rgba(0, 0, 0, 0.12);
+            --primary: #000000;
+            --badge-bg: #ffffff;
+            --badge-text: #000000;
+            --hover-bg: rgba(0, 0, 0, 0.025);
+            --card-subtle: rgba(0, 0, 0, 0.02);
+            --code-bg: #f5f5f5;
+        }
+
+        body.dark-mode {
+            --bg: #0d0d0d;
+            --text-main: #f0f0f0;
+            --text-dim: #888888;
+            --border: rgba(255, 255, 255, 0.14);
+            --hairline: rgba(255, 255, 255, 0.14);
+            --primary: #ffffff;
+            --badge-bg: #000000;
+            --badge-text: #ffffff;
+            --hover-bg: rgba(255, 255, 255, 0.035);
+            --card-subtle: rgba(255, 255, 255, 0.025);
+            --code-bg: #161616;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            padding: 2rem 4vw 8rem;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* ── STICKY TOP CONTROLLER ── */
+        .top-bar {
+            position: sticky;
+            top: 1rem;
+            z-index: 1000;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            backdrop-filter: blur(12px);
+            margin-bottom: 4rem;
+        }
+
+        .top-bar-left h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .top-bar-left h1 span.mono-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            border: 1px solid var(--primary);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .top-bar-left p {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .top-bar-nav {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .opt-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.45rem 0.85rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .opt-btn:hover {
+            background: var(--primary);
+            color: var(--bg);
+            border-color: var(--primary);
+        }
+
+        .theme-toggle-btn {
+            background: var(--primary);
+            color: var(--bg);
+            border: 1px solid var(--primary);
+            padding: 0.45rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s;
+        }
+        .theme-toggle-btn:hover { opacity: 0.85; }
+
+        /* ── SECTION COMMON ── */
+        .option-section {
+            margin-bottom: 7rem;
+            padding-bottom: 6rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .option-header {
+            margin-bottom: 3rem;
+        }
+
+        .option-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+        }
+
+        .option-title {
+            font-size: 2.1rem;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            line-height: 1.15;
+        }
+
+        .option-desc {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            max-width: 820px;
+            margin-top: 0.4rem;
+            line-height: 1.55;
+        }
+
+        .option-why {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-left: 2px solid var(--primary);
+            color: var(--text-main);
+            background: var(--card-subtle);
+            margin-top: 0.8rem;
+            display: inline-block;
+        }
+
+        /* Pure Monochrome Tag Pills */
+        .mono-pill {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            color: var(--text-main);
+            background: var(--bg);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        .mono-pill:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--bg);
+        }
+
+        /* ── ACTION SUITE BUTTONS ── */
+        .action-suite {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+        }
+
+        .btn-action-mono {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 0.48rem 0.95rem;
+            border-radius: 3px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+        }
+        .btn-action-primary {
+            background: var(--primary);
+            color: var(--bg);
+            border: 1px solid var(--primary);
+        }
+        .btn-action-primary:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+        .btn-action-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+        .btn-action-outline:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: var(--bg);
+            transform: translateY(-1px);
+        }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           DESIGN 1A-1: ACTION-DRIVEN PIPELINE DOSSIER (DIRECT 1A EVOLUTION)
+           (Preserves the beloved 1A 3-column hairline grid, but integrates
+           an Action Cluster: Case Study ➔, GitHub ↗, Live Demo ↗)
+           ═════════════════════════════════════════════════════════════════ */
+        .v1a-list {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .v1a-item {
+            position: relative;
+            padding: 2.8rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 80px 1.4fr 1.6fr;
+            gap: 2.5rem;
+            align-items: flex-start;
+            transition: all 0.25s ease;
+        }
+        .v1a-item:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .v1a-item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--primary);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .v1a-item:hover {
+            background: var(--hover-bg);
+        }
+        .v1a-item:hover::before {
+            opacity: 1;
+        }
+
+        .v1a-index {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .v1a-beacon {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            font-weight: 700;
+        }
+        .v1a-beacon-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .v1a-info-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .v1a-category {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+
+        .v1a-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+        }
+
+        .v1a-desc {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.55;
+            margin-top: 0.2rem;
+        }
+
+        .v1a-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 0.5rem;
+        }
+
+        /* Right Column: Architectural Pipeline & Telemetry */
+        .v1a-pipeline-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .v1a-pipe-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .v1a-pipe-flow {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding: 1.2rem;
+            background: var(--card-subtle);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+        }
+
+        .v1a-step {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 0.45rem 0.75rem;
+            border-radius: 2px;
+            font-family: 'Space Mono', monospace;
+        }
+        .v1a-step-role {
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+        .v1a-step-name {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .v1a-arrow {
+            font-family: 'Space Mono', monospace;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        .v1a-metrics-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            border-top: 1px dashed var(--border);
+            padding-top: 0.8rem;
+        }
+        .v1a-metric-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .v1a-metric-k { color: var(--text-dim); font-size: 0.65rem; text-transform: uppercase; }
+        .v1a-metric-v { font-weight: 700; color: var(--text-main); }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           DESIGN 1A-2: ARCHITECTURAL BLUEPRINT SPEC WITH BOTTOM UTILITY BAR
+           (A dedicated utility dock anchored to the bottom hairline:
+           clear visual separation for Case Study, Code, and Live Demo)
+           ═════════════════════════════════════════════════════════════════ */
+        .v1a2-item {
+            position: relative;
+            padding: 2.5rem 1.8rem 1.8rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            transition: all 0.25s ease;
+        }
+        .v1a2-item:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+        .v1a2-item:hover {
+            background: var(--hover-bg);
+        }
+
+        .v1a2-main-grid {
+            display: grid;
+            grid-template-columns: 80px 1.2fr 1.8fr;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        /* Bottom Utility Bar */
+        .v1a2-utility-bar {
+            border-top: 1px dashed var(--border);
+            padding-top: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .v1a2-util-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           DESIGN 1A-3: THE RFC & PATENT TECHNICAL INDEX (DEEP-DIVE FOCUS)
+           (High-density engineering publication format with contract
+           data schemas, benchmark badges, and high-contrast case-study action)
+           ═════════════════════════════════════════════════════════════════ */
+        .v1a3-item {
+            position: relative;
+            padding: 2.5rem 1.6rem;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 140px 1fr 280px;
+            gap: 2.5rem;
+            align-items: flex-start;
+            transition: all 0.25s ease;
+        }
+        .v1a3-item:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+        .v1a3-item:hover {
+            background: var(--hover-bg);
+        }
+
+        .v1a3-serial-col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-family: 'Space Mono', monospace;
+        }
+        .v1a3-serial-num {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .v1a3-serial-meta {
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        .v1a3-content-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .v1a3-action-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-left: 1px solid var(--border);
+            padding-left: 2rem;
+        }
+
+        .v1a3-action-btn-large {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 3px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           DESIGN 1A-4: TELEMETRY BUS WITH EXPANDING BLUEPRINT INSPECTOR
+           (Click row to toggle an inline technical blueprint schematic,
+           with direct links to Case Study, Live Demo, and GitHub)
+           ═════════════════════════════════════════════════════════════════ */
+        .v1a4-item {
+            position: relative;
+            padding: 2.2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 80px 1.4fr 1.6fr 150px;
+            gap: 2rem;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .v1a4-item:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+        .v1a4-item:hover, .v1a4-item.is-expanded {
+            background: var(--hover-bg);
+        }
+
+        .v1a4-drawer {
+            grid-column: 1 / -1;
+            display: none;
+            padding-top: 1.8rem;
+            margin-top: 1.2rem;
+            border-top: 1px dashed var(--border);
+            animation: fadeIn 0.25s ease;
+        }
+        .v1a4-item.is-expanded .v1a4-drawer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .v1a-item { grid-template-columns: 1fr; gap: 1.5rem; }
+            .v1a2-main-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .v1a3-item { grid-template-columns: 1fr; gap: 1.5rem; }
+            .v1a3-action-col { border-left: none; padding-left: 0; }
+            .v1a4-item { grid-template-columns: 1fr; gap: 1.2rem; }
+            .v1a4-item.is-expanded .v1a4-drawer { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── STICKY TOP CONTROLLER ── -->
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <h1>
+                1A Dossier Variations
+                <span class="mono-tag">CASE STUDY + GITHUB + LIVE DEMO</span>
+            </h1>
+            <p>4 Evolutions of Option 1A with Full Detail Pages, Source Code &amp; Demo Links (Strict B&amp;W)</p>
+        </div>
+
+        <nav class="top-bar-nav">
+            <a href="#opt-1a1" class="opt-btn">1A-1: Action Cluster</a>
+            <a href="#opt-1a2" class="opt-btn">1A-2: Utility Dock</a>
+            <a href="#opt-1a3" class="opt-btn">1A-3: RFC Technical Spec</a>
+            <a href="#opt-1a4" class="opt-btn">1A-4: Interactive Drawer</a>
+            <button class="theme-toggle-btn" id="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-icon">&#9680;</span>
+                <span id="theme-text">Dark Mode</span>
+            </button>
+            <a href="project-detail.html" class="opt-btn" style="border-color:var(--primary); font-weight:700;">&#8599; View Sample Detail Page</a>
+            <a href="index.html#projects" class="opt-btn">&#8592; Main Website</a>
+        </nav>
+    </header>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         DESIGN 1A-1: THE ACTION-DRIVEN PIPELINE DOSSIER
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="option-section" id="opt-1a1">
+        <div class="option-header">
+            <span class="option-badge">DESIGN 1A-1 &bull; ACTION-DRIVEN PIPELINE DOSSIER</span>
+            <h2 class="option-title">Direct Evolution of 1A with Integrated Action Suite</h2>
+            <p class="option-desc">
+                Preserves the exact serial index, open layout, hairline grid, and linear pipeline of 1A. Directly embeds a clean action suite below the description with a high-contrast <strong>[Case Study Blueprint ➔]</strong> link, <strong>[GitHub Code ↗]</strong>, and <strong>[Live Demo ↗]</strong>.
+            </p>
+            <div class="option-why">
+                &#9654; Click on "[Case Study Blueprint ➔]" to open the actual full-length architectural case study page (project-detail.html).
+            </div>
+        </div>
+
+        <div class="v1a-list">
+            <!-- Project 1 -->
+            <div class="v1a-item">
+                <div class="v1a-index">
+                    <span>[01]</span>
+                    <div class="v1a-beacon"><span class="v1a-beacon-dot"></span> ACTIVE</div>
+                </div>
+                <div class="v1a-info-col">
+                    <span class="v1a-category">DISTRIBUTED SYSTEMS // HIGH-THROUGHPUT</span>
+                    <h3 class="v1a-title">Async Notification Fanout Engine</h3>
+                    <p class="v1a-desc">
+                        Distributed event-driven notification architecture processing 10,000+ daily alerts across email, SMS, and push channels with strict idempotency and zero duplicate transmissions.
+                    </p>
+                    <div class="v1a-tags">
+                        <span class="mono-pill">Go 1.22</span>
+                        <span class="mono-pill">Apache Kafka</span>
+                        <span class="mono-pill">PostgreSQL</span>
+                        <span class="mono-pill">Redis Lock</span>
+                    </div>
+
+                    <!-- Action Suite -->
+                    <div class="action-suite">
+                        <a href="project-detail.html" class="btn-action-mono btn-action-primary">
+                            Case Study Blueprint &#8594;
+                        </a>
+                        <a href="https://github.com" target="_blank" class="btn-action-mono btn-action-outline">
+                            GitHub Source &#8599;
+                        </a>
+                        <a href="project-detail.html#live-simulator" class="btn-action-mono btn-action-outline">
+                            Live Demo &#8599;
+                        </a>
+                    </div>
+                </div>
+                <div class="v1a-pipeline-col">
+                    <div class="v1a-pipe-title">
+                        <span>DATA PIPELINE TRACE</span>
+                        <span>LATENCY: &lt;12ms P99</span>
+                    </div>
+                    <div class="v1a-pipe-flow">
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">INGEST</span>
+                            <span class="v1a-step-name">FastAPI</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">DEDUP</span>
+                            <span class="v1a-step-name">Redis TTL</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">EVENT BUS</span>
+                            <span class="v1a-step-name">Kafka Broker</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">WORKER</span>
+                            <span class="v1a-step-name">Go Goroutines</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">FANOUT</span>
+                            <span class="v1a-step-name">Multi-Channel</span>
+                        </div>
+                    </div>
+                    <div class="v1a-metrics-strip">
+                        <div class="v1a-metric-item">
+                            <span class="v1a-metric-k">Throughput</span>
+                            <span class="v1a-metric-v">10K+ alerts/day</span>
+                        </div>
+                        <div class="v1a-metric-item">
+                            <span class="v1a-metric-k">Delivery P99</span>
+                            <span class="v1a-metric-v">&lt; 12ms</span>
+                        </div>
+                        <div class="v1a-metric-item">
+                            <span class="v1a-metric-k">Idempotency</span>
+                            <span class="v1a-metric-v">100.0% verified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="v1a-item">
+                <div class="v1a-index">
+                    <span>[02]</span>
+                    <div class="v1a-beacon"><span class="v1a-beacon-dot"></span> LIVE</div>
+                </div>
+                <div class="v1a-info-col">
+                    <span class="v1a-category">AGENTIC AI // SEMANTIC SEARCH</span>
+                    <h3 class="v1a-title">Pocket Sage &mdash; Portfolio Guide</h3>
+                    <p class="v1a-desc">
+                        Conversational portfolio guide powered by an embedded RAG pipeline with FastAPI, LangChain, and ChromaDB vector search. Pre-indexes resume data for instantaneous sub-100ms conversational inference.
+                    </p>
+                    <div class="v1a-tags">
+                        <span class="mono-pill">Python</span>
+                        <span class="mono-pill">LangChain</span>
+                        <span class="mono-pill">ChromaDB</span>
+                        <span class="mono-pill">FastAPI</span>
+                    </div>
+
+                    <!-- Action Suite -->
+                    <div class="action-suite">
+                        <a href="project-detail.html" class="btn-action-mono btn-action-primary">
+                            Case Study Blueprint &#8594;
+                        </a>
+                        <a href="https://github.com" target="_blank" class="btn-action-mono btn-action-outline">
+                            GitHub Source &#8599;
+                        </a>
+                        <a href="http://localhost:8000/docs" target="_blank" class="btn-action-mono btn-action-outline">
+                            Swagger API Docs &#8599;
+                        </a>
+                    </div>
+                </div>
+                <div class="v1a-pipeline-col">
+                    <div class="v1a-pipe-title">
+                        <span>DATA PIPELINE TRACE</span>
+                        <span>RETRIEVAL: &lt;65ms</span>
+                    </div>
+                    <div class="v1a-pipe-flow">
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">QUERY</span>
+                            <span class="v1a-step-name">User Prompt</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">EMBED</span>
+                            <span class="v1a-step-name">FastEmbed</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">VECTOR</span>
+                            <span class="v1a-step-name">ChromaDB</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">RE-RANK</span>
+                            <span class="v1a-step-name">Context Engine</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">INFERENCE</span>
+                            <span class="v1a-step-name">Llama / Claude</span>
+                        </div>
+                    </div>
+                    <div class="v1a-metrics-strip">
+                        <div class="v1a-metric-item">
+                            <span class="v1a-metric-k">Context Search</span>
+                            <span class="v1a-metric-v">Cosine Similarity</span>
+                        </div>
+                        <div class="v1a-metric-item">
+                            <span class="v1a-metric-k">Response Time</span>
+                            <span class="v1a-metric-v">&lt; 180ms stream</span>
+                        </div>
+                        <div class="v1a-metric-item">
+                            <span class="v1a-metric-k">Precision</span>
+                            <span class="v1a-metric-v">Top-3 Relevant Chunks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         DESIGN 1A-2: ARCHITECTURAL BLUEPRINT SPEC WITH BOTTOM UTILITY DOCK
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="option-section" id="opt-1a2">
+        <div class="option-header">
+            <span class="option-badge">DESIGN 1A-2 &bull; INTEGRATED UTILITY DOCK</span>
+            <h2 class="option-title">Clean Horizontal Dossier with Integrated Utility Bar</h2>
+            <p class="option-desc">
+                Organizes the dossier into an upper engineering specification block and an integrated bottom utility dock that balances technical metadata, latency indicators, and action triggers across a single hairline shelf.
+            </p>
+        </div>
+
+        <div class="v1a-list">
+            <div class="v1a2-item">
+                <div class="v1a2-main-grid">
+                    <div class="v1a-index">
+                        <span>[01]</span>
+                        <div class="v1a-beacon"><span class="v1a-beacon-dot"></span> ACTIVE</div>
+                    </div>
+                    <div class="v1a-info-col">
+                        <span class="v1a-category">DISTRIBUTED SYSTEMS // GO + KAFKA</span>
+                        <h3 class="v1a-title">Async Notification Fanout Engine</h3>
+                        <p class="v1a-desc">
+                            High-concurrency event ingestion gateway feeding partitioned Kafka streams. Features distributed Redis key locking with sliding TTL to prevent duplicate transactional alerts.
+                        </p>
+                    </div>
+                    <div class="v1a-pipeline-col">
+                        <div class="v1a-pipe-title">
+                            <span>PIPELINE SPECIFICATION</span>
+                            <span>END-TO-END FLOW</span>
+                        </div>
+                        <div class="v1a-pipe-flow">
+                            <div class="v1a-step">
+                                <span class="v1a-step-role">INGEST</span>
+                                <span class="v1a-step-name">FastAPI</span>
+                            </div>
+                            <span class="v1a-arrow">&rarr;</span>
+                            <div class="v1a-step">
+                                <span class="v1a-step-role">DEDUP</span>
+                                <span class="v1a-step-name">Redis TTL</span>
+                            </div>
+                            <span class="v1a-arrow">&rarr;</span>
+                            <div class="v1a-step">
+                                <span class="v1a-step-role">EVENT BUS</span>
+                                <span class="v1a-step-name">Kafka Broker</span>
+                            </div>
+                            <span class="v1a-arrow">&rarr;</span>
+                            <div class="v1a-step">
+                                <span class="v1a-step-role">WORKER</span>
+                                <span class="v1a-step-name">Go Goroutines</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Utility Dock -->
+                <div class="v1a2-utility-bar">
+                    <div class="v1a2-util-left">
+                        <div style="display:flex; gap:6px;">
+                            <span class="mono-pill">Go</span>
+                            <span class="mono-pill">Kafka</span>
+                            <span class="mono-pill">Redis</span>
+                            <span class="mono-pill">Postgres</span>
+                        </div>
+                        <span>&bull; Throughput: 10K+/day</span>
+                        <span>&bull; P99: &lt;12ms</span>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        <a href="https://github.com" target="_blank" class="btn-action-mono btn-action-outline">
+                            GitHub Repo &#8599;
+                        </a>
+                        <a href="project-detail.html#live-simulator" class="btn-action-mono btn-action-outline">
+                            Live Sandbox &#8599;
+                        </a>
+                        <a href="project-detail.html" class="btn-action-mono btn-action-primary">
+                            Full Case Study &#8594;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         DESIGN 1A-3: THE RFC & PATENT TECHNICAL INDEX (DEEP-DIVE FOCUS)
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="option-section" id="opt-1a3">
+        <div class="option-header">
+            <span class="option-badge">DESIGN 1A-3 &bull; RFC TECHNICAL INDEX</span>
+            <h2 class="option-title">Formal Engineering Spec Dossier &amp; Dedicated Action Tower</h2>
+            <p class="option-desc">
+                Presents the system in the aesthetic of a published RFC technical standard. A dedicated right-hand Action Tower makes "Deep-Dive Architecture Page" the primary focal action, accompanied by source repository and live execution sandbox triggers.
+            </p>
+        </div>
+
+        <div class="v1a-list">
+            <div class="v1a3-item">
+                <div class="v1a3-serial-col">
+                    <span class="v1a3-serial-num">RFC // 01</span>
+                    <span class="v1a3-serial-meta">
+                        STATUS: ACTIVE<br>
+                        REV: v2.4-PROD<br>
+                        AUTH: THIVAKAR S P
+                    </span>
+                    <span class="mono-pill" style="margin-top:6px; border-color:var(--primary);">&#11044; AUDITED</span>
+                </div>
+                <div class="v1a3-content-col">
+                    <div>
+                        <span class="v1a-category">DISTRIBUTED EVENT BROKERING</span>
+                        <h3 class="v1a-title" style="margin-top:4px;">Async Notification Fanout Engine</h3>
+                    </div>
+                    <p class="v1a-desc">
+                        Formal distributed architecture isolating external channel latency (SMTP, SMS carrier handshakes) from ingest microservices. Utilizes partitioned Kafka topic offsets to guarantee strict per-user message sequencing.
+                    </p>
+                    <div class="v1a-pipe-flow" style="margin-top:0.4rem;">
+                        <span style="font-family:'Space Mono', monospace; font-size:0.7rem; color:var(--text-dim); margin-right:8px;">CONTRACT:</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">INGEST</span>
+                            <span class="v1a-step-name">FastAPI</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">LOCK</span>
+                            <span class="v1a-step-name">Redis SETNX</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">PARTITION</span>
+                            <span class="v1a-step-name">Kafka Brokering</span>
+                        </div>
+                        <span class="v1a-arrow">&rarr;</span>
+                        <div class="v1a-step">
+                            <span class="v1a-step-role">CONSUME</span>
+                            <span class="v1a-step-name">Go Worker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="v1a3-action-col">
+                    <a href="project-detail.html" class="v1a3-action-btn-large btn-action-primary">
+                        <span>Deep-Dive Blueprint</span>
+                        <span>&#8594;</span>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="v1a3-action-btn-large btn-action-outline">
+                        <span>Source Code</span>
+                        <span>&#8599;</span>
+                    </a>
+                    <a href="project-detail.html#live-simulator" class="v1a3-action-btn-large btn-action-outline">
+                        <span>Live Sandbox</span>
+                        <span>&#8599;</span>
+                    </a>
+                    <div style="font-family:'Space Mono', monospace; font-size:0.68rem; color:var(--text-dim); margin-top:4px;">
+                        <span>SHA256: 8f9b2c...a10e</span><br>
+                        <span>BENCHMARK: 10K/SEC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         DESIGN 1A-4: TELEMETRY BUS WITH EXPANDING BLUEPRINT INSPECTOR
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="option-section" id="opt-1a4" style="border-bottom:none;">
+        <div class="option-header">
+            <span class="option-badge">DESIGN 1A-4 &bull; TELEMETRY BUS &amp; SLIDE-OUT DRAWER</span>
+            <h2 class="option-title">Compact Dossier with Slide-Out Blueprint Inspector</h2>
+            <p class="option-desc">
+                Combines an ultra-clean hairline row with a slide-out inline blueprint drawer that expands on click. Allows readers to inspect the architecture immediately without leaving the overview, while also providing a link to the dedicated full-length case study page.
+            </p>
+            <div class="option-why">
+                &#9654; Click anywhere on the row to toggle open the blueprint inspector drawer.
+            </div>
+        </div>
+
+        <div class="v1a-list">
+            <div class="v1a4-item is-expanded" onclick="toggleV1A4(this, event)">
+                <div class="v1a-index">
+                    <span>[01]</span>
+                    <span style="font-size:0.65rem; color:var(--text-dim);">FANOUT</span>
+                </div>
+                <div class="v1a-info-col">
+                    <span class="v1a-category">DISTRIBUTED SYSTEMS</span>
+                    <h3 class="v1a-title" style="font-size:1.35rem;">Async Notification Fanout Engine</h3>
+                    <p class="v1a-desc" style="font-size:0.84rem;">
+                        High-throughput alert brokering in Go, Kafka, PostgreSQL, and Redis.
+                    </p>
+                </div>
+                <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                    <span class="mono-pill">Go 1.22</span>
+                    <span class="mono-pill">Kafka</span>
+                    <span class="mono-pill">PostgreSQL</span>
+                    <span class="mono-pill">Redis</span>
+                </div>
+                <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+                    <span class="btn-action-mono btn-action-outline" style="font-size:0.72rem;">
+                        &#9662; Blueprint
+                    </span>
+                    <span style="font-family:'Space Mono', monospace; font-size:0.68rem; color:var(--text-dim);">10K+ alerts/day</span>
+                </div>
+
+                <!-- Slide-Out Blueprint Drawer -->
+                <div class="v1a4-drawer">
+                    <div style="border:1px solid var(--border); padding:1.2rem; background:var(--code-bg); border-radius:3px;">
+                        <span style="font-family:'Space Mono', monospace; font-size:0.7rem; color:var(--text-dim); display:block; margin-bottom:10px;">
+                            SYSTEM TOPOLOGY SPECIFICATION
+                        </span>
+                        <div class="v1a-pipe-flow" style="background:var(--bg);">
+                            <div class="v1a-step">
+                                <span class="v1a-step-role">INGEST</span>
+                                <span class="v1a-step-name">FastAPI</span>
+                            </div>
+                            <span class="v1a-arrow">&rarr;</span>
+                            <div class="v1a-step">
+                                <span class="v1a-step-role">DEDUP</span>
+                                <span class="v1a-step-name">Redis TTL</span>
+                            </div>
+                            <span class="v1a-arrow">&rarr;</span>
+                            <div class="v1a-step">
+                                <span class="v1a-step-role">EVENT BUS</span>
+                                <span class="v1a-step-name">Kafka Broker</span>
+                            </div>
+                            <span class="v1a-arrow">&rarr;</span>
+                            <div class="v1a-step">
+                                <span class="v1a-step-role">WORKER</span>
+                                <span class="v1a-step-name">Go Goroutines</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; justify-content:space-between; gap:1.2rem;">
+                        <div>
+                            <span style="font-family:'Space Mono', monospace; font-size:0.72rem; font-weight:700; display:block; margin-bottom:4px;">
+                                ARCHITECTURAL HIGHLIGHTS
+                            </span>
+                            <p style="font-size:0.86rem; color:var(--text-dim); line-height:1.5;">
+                                Prevents duplicate alerts via an atomic Redis <code>SETNX</code> idempotency lock. Go goroutines drain Kafka partitions in parallel, isolating SMTP latency spikes from upstream ingest endpoints.
+                            </p>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <a href="project-detail.html" class="btn-action-mono btn-action-primary">
+                                Read Full Case Study Blueprint &#8594;
+                            </a>
+                            <a href="https://github.com" target="_blank" class="btn-action-mono btn-action-outline">
+                                View GitHub Source &#8599;
+                            </a>
+                            <a href="project-detail.html#live-simulator" class="btn-action-mono btn-action-outline">
+                                Live Sandbox &#8599;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── JAVASCRIPT CONTROLLERS ── -->
+    <script>
+        function toggleTheme() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            if (isDark) {
+                icon.innerHTML = '&#9681;';
+                text.innerText = 'Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.innerHTML = '&#9680;';
+                text.innerText = 'Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon').innerHTML = '&#9681;';
+                document.getElementById('theme-text').innerText = 'Light Mode';
+            }
+        })();
+
+        function toggleV1A4(el, event) {
+            if (event && (event.target.closest('a') || event.target.closest('button'))) {
+                return;
+            }
+            el.classList.toggle('is-expanded');
+        }
+    </script>
+</body>
+</html>

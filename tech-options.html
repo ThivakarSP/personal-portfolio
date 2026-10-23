@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAD & Reticle Separation Variations — Pick Your Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --text-main: #1a1a1a;
+            --text-dim: #777777;
+            --border: rgba(0, 0, 0, 0.1);
+            --hairline: rgba(0, 0, 0, 0.12);
+            --tick-color: rgba(0, 0, 0, 0.35);
+            --tick-hover: #000000;
+            --primary: #000000;
+            --badge-bg: #ffffff;
+            --badge-text: #000000;
+            --badge-border: #000000;
+        }
+
+        body.dark-mode {
+            --bg: #121212;
+            --text-main: #f0f0f0;
+            --text-dim: #999999;
+            --border: rgba(255, 255, 255, 0.1);
+            --hairline: rgba(255, 255, 255, 0.12);
+            --tick-color: rgba(255, 255, 255, 0.35);
+            --tick-hover: #ffffff;
+            --primary: #ffffff;
+            --badge-bg: #000000;
+            --badge-text: #ffffff;
+            --badge-border: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            padding: 2rem 3vw 8rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ── STICKY TOP CONTROLLER ── */
+        .top-bar {
+            position: sticky;
+            top: 1rem;
+            z-index: 1000;
+            background: var(--bg);
+            border: 1px solid var(--hairline);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            backdrop-filter: blur(10px);
+            margin-bottom: 3.5rem;
+        }
+
+        .top-bar-left h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .top-bar-left p {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .top-bar-nav {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .opt-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .opt-btn:hover {
+            background: var(--primary);
+            color: var(--bg);
+            border-color: var(--primary);
+        }
+
+        .theme-toggle-btn {
+            background: var(--primary);
+            color: var(--bg);
+            border: none;
+            padding: 0.45rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s;
+        }
+        .theme-toggle-btn:hover { opacity: 0.85; }
+
+        /* ── OPTION SECTION WRAPPER ── */
+        .option-section {
+            margin-bottom: 6rem;
+            padding-bottom: 5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .option-header {
+            margin-bottom: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .option-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .option-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .option-desc {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            max-width: 650px;
+            margin-top: 0.4rem;
+            line-height: 1.5;
+        }
+
+        .option-why {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            border-left: 2px solid var(--primary);
+            color: var(--text-main);
+            background: rgba(0,0,0,0.02);
+            margin-top: 0.6rem;
+            max-width: 600px;
+        }
+        body.dark-mode .option-why { background: rgba(255,255,255,0.03); }
+
+        /* ── SHARED ORBITAL SYSTEM STYLES (PURE MONOCHROME) ── */
+        .orbital-stage {
+            position: relative;
+            width: 270px;
+            height: 270px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orbital-center {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 1px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            background-color: var(--bg);
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .sector-cell:hover .orbital-center {
+            transform: scale(1.05);
+        }
+
+        .orbital-center-icon {
+            font-size: 0.82rem;
+            margin-bottom: 2px;
+            font-family: monospace;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .orbital-center-title {
+            font-size: 0.53rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.1;
+            margin: 0 4px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .orbital-center-subtitle {
+            font-size: 0.38rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px dashed var(--hairline);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .orbit-track {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            transform-origin: center;
+        }
+
+        .node-container {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--radius));
+        }
+        .node-wrapper {
+            transform: rotate(calc(-1 * var(--angle)));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-node-inner {
+            background-color: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text);
+            padding: 0.16rem 0.42rem;
+            border-radius: 2px;
+            font-weight: 600;
+            font-family: monospace;
+            font-size: 0.56rem;
+            text-transform: uppercase;
+            white-space: nowrap;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: all 0.25s ease;
+        }
+
+        .skill-node-inner:hover {
+            background-color: var(--badge-text);
+            color: var(--badge-bg);
+            transform: scale(1.12) translateY(-2px);
+            z-index: 20;
+        }
+
+        @keyframes orbit-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes orbit-counter-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        .orbit-1 { width: 105px; height: 105px; }
+        .orbit-2 { width: 226px; height: 226px; }
+
+        .track-1 { animation: orbit-spin 25s linear infinite; }
+        .track-1 .skill-node-inner { animation: orbit-counter-spin 25s linear infinite; }
+
+        .track-2 { animation: orbit-spin 45s linear infinite; }
+        .track-2 .skill-node-inner { animation: orbit-counter-spin 45s linear infinite; }
+
+        .sector-cell:hover .orbit-track,
+        .sector-cell:hover .skill-node-inner {
+            animation-play-state: paused;
+        }
+
+        /* ── COMMON 3x2 SECTOR GRID ── */
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem 1.5rem;
+            width: 100%;
+            max-width: 1280px;
+            margin: 2rem auto;
+        }
+
+        .sector-cell {
+            position: relative;
+            height: 310px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           VARIATION 2A: CLEAN CAD L-BRACKETS (ZERO TEXT AT TOP)
+           ═════════════════════════════════════════════════════════════════ */
+        .cell-2a .l-tick {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            pointer-events: none;
+            transition: all 0.25s ease;
+        }
+        .cell-2a .tl { top: 0; left: 0; border-top: 1.5px solid var(--tick-color); border-left: 1.5px solid var(--tick-color); }
+        .cell-2a .tr { top: 0; right: 0; border-top: 1.5px solid var(--tick-color); border-right: 1.5px solid var(--tick-color); }
+        .cell-2a .bl { bottom: 0; left: 0; border-bottom: 1.5px solid var(--tick-color); border-left: 1.5px solid var(--tick-color); }
+        .cell-2a .br { bottom: 0; right: 0; border-bottom: 1.5px solid var(--tick-color); border-right: 1.5px solid var(--tick-color); }
+
+        .cell-2a:hover .l-tick {
+            border-color: var(--tick-hover);
+        }
+        .cell-2a:hover .tl { transform: translate(-3px, -3px); }
+        .cell-2a:hover .tr { transform: translate(3px, -3px); }
+        .cell-2a:hover .bl { transform: translate(-3px, 3px); }
+        .cell-2a:hover .br { transform: translate(3px, 3px); }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           VARIATION 2B: ARCHITECTURAL CROSSHAIRS (+ REGISTRATION MARKS)
+           ═════════════════════════════════════════════════════════════════ */
+        .cell-2b .crosshair {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        /* Draw a "+" using before and after */
+        .cell-2b .crosshair::before,
+        .cell-2b .crosshair::after {
+            content: '';
+            position: absolute;
+            background: var(--tick-color);
+            transition: all 0.3s ease;
+        }
+        .cell-2b .crosshair::before {
+            top: 5px; left: 0; width: 12px; height: 1.5px;
+        }
+        .cell-2b .crosshair::after {
+            top: 0; left: 5px; width: 1.5px; height: 12px;
+        }
+        .cell-2b .tl { top: 0; left: 0; }
+        .cell-2b .tr { top: 0; right: 0; }
+        .cell-2b .bl { bottom: 0; left: 0; }
+        .cell-2b .br { bottom: 0; right: 0; }
+
+        .cell-2b:hover .crosshair::before,
+        .cell-2b:hover .crosshair::after {
+            background: var(--tick-hover);
+        }
+        .cell-2b:hover .crosshair {
+            transform: scale(1.25);
+        }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           VARIATION 2C: ASYMMETRICAL DIAGONAL BRACKETS (TOP-LEFT & BOTTOM-RIGHT)
+           ═════════════════════════════════════════════════════════════════ */
+        .cell-2c .diag-bracket {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .cell-2c .tl { top: 0; left: 0; border-top: 2px solid var(--tick-color); border-left: 2px solid var(--tick-color); }
+        .cell-2c .br { bottom: 0; right: 0; border-bottom: 2px solid var(--tick-color); border-right: 2px solid var(--tick-color); }
+
+        .cell-2c:hover .diag-bracket {
+            border-color: var(--tick-hover);
+        }
+        .cell-2c:hover .tl { transform: translate(-3px, -3px); }
+        .cell-2c:hover .br { transform: translate(3px, 3px); }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           VARIATION 2D: CARDINAL RETICLE TICKS (N · S · E · W HASH MARKS)
+           ═════════════════════════════════════════════════════════════════ */
+        .cell-2d .cardinal-tick {
+            position: absolute;
+            background: var(--tick-color);
+            pointer-events: none;
+            transition: all 0.25s ease;
+        }
+        .cell-2d .north { top: 0; left: 50%; transform: translateX(-50%); width: 1.5px; height: 12px; }
+        .cell-2d .south { bottom: 0; left: 50%; transform: translateX(-50%); width: 1.5px; height: 12px; }
+        .cell-2d .west  { top: 50%; left: 0; transform: translateY(-50%); width: 12px; height: 1.5px; }
+        .cell-2d .east  { top: 50%; right: 0; transform: translateY(-50%); width: 12px; height: 1.5px; }
+
+        .cell-2d:hover .cardinal-tick {
+            background: var(--tick-hover);
+        }
+        .cell-2d:hover .north { height: 16px; }
+        .cell-2d:hover .south { height: 16px; }
+        .cell-2d:hover .west  { width: 16px; }
+        .cell-2d:hover .east  { width: 16px; }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           VARIATION 2E: AUTOFOCUS VIEWFINDER (DYNAMIC CAMERA LOCK ON HOVER)
+           ═════════════════════════════════════════════════════════════════ */
+        .cell-2e .viewfinder-frame {
+            position: absolute;
+            width: 290px;
+            height: 290px;
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cell-2e .vf-tick {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            transition: all 0.3s ease;
+        }
+        .cell-2e .tl { top: 0; left: 0; border-top: 1.5px solid var(--tick-color); border-left: 1.5px solid var(--tick-color); }
+        .cell-2e .tr { top: 0; right: 0; border-top: 1.5px solid var(--tick-color); border-right: 1.5px solid var(--tick-color); }
+        .cell-2e .bl { bottom: 0; left: 0; border-bottom: 1.5px solid var(--tick-color); border-left: 1.5px solid var(--tick-color); }
+        .cell-2e .br { bottom: 0; right: 0; border-bottom: 1.5px solid var(--tick-color); border-right: 1.5px solid var(--tick-color); }
+
+        .cell-2e:hover .viewfinder-frame {
+            width: 260px;
+            height: 260px;
+        }
+        .cell-2e:hover .vf-tick {
+            border-color: var(--tick-hover);
+        }
+
+
+        /* ═════════════════════════════════════════════════════════════════
+           VARIATION 2F: MICRO GEOMETRIC CORNER DOTS (PRECISION PINS)
+           ═════════════════════════════════════════════════════════════════ */
+        .cell-2f .pin-dot {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: var(--tick-color);
+            border-radius: 50%;
+            pointer-events: none;
+            transition: all 0.25s ease;
+        }
+        .cell-2f .tl { top: 4px; left: 4px; }
+        .cell-2f .tr { top: 4px; right: 4px; }
+        .cell-2f .bl { bottom: 4px; left: 4px; }
+        .cell-2f .br { bottom: 4px; right: 4px; }
+
+        .cell-2f:hover .pin-dot {
+            background: var(--tick-hover);
+            transform: scale(1.6);
+        }
+
+        @media (max-width: 1050px) {
+            .sectors-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 650px) {
+            .sectors-grid { grid-template-columns: 1fr; }
+            .orbital-stage { transform: scale(0.92); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY TOP CONTROLLER -->
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <h1>CAD &amp; Reticle Separation Variations</h1>
+            <p>Similar to 02, but with <strong>zero redundant words at the top</strong>. Clean, architectural, and strictly monochrome.</p>
+        </div>
+        <div class="top-bar-nav">
+            <a href="#v2a" class="opt-btn">2A Clean L-Ticks</a>
+            <a href="#v2b" class="opt-btn">2B Crosshairs (+)</a>
+            <a href="#v2c" class="opt-btn">2C Diagonal Brackets</a>
+            <a href="#v2d" class="opt-btn">2D Cardinal Ticks</a>
+            <a href="#v2e" class="opt-btn">2E Autofocus Reticle</a>
+            <a href="#v2f" class="opt-btn">2F Micro Pins</a>
+            <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()">
+                <span id="theme-icon">◐</span> Toggle Theme
+            </button>
+        </div>
+    </header>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         VARIATION 2A: CLEAN CAD L-BRACKETS (NO TEXT AT TOP)
+         ═════════════════════════════════════════════════════════════════ -->
+    <section id="v2a" class="option-section">
+        <div class="option-header">
+            <div>
+                <span class="option-badge">Variation 2A &bull; Recommended</span>
+                <h2 class="option-title">Clean CAD L-Ticks (Zero Text)</h2>
+                <p class="option-desc">Four minimalist 14px corner brackets framing each quadrant. All top text labels removed, leaving full focus on the central node and spinning skills.</p>
+                <div class="option-why">
+                    <strong>Hover Behavior:</strong> Corner brackets subtly brighten and expand outwards by 3px on hover, framing the orbit dynamically.
+                </div>
+            </div>
+        </div>
+
+        <div class="sectors-grid">
+            <!-- 1: Languages -->
+            <div class="sector-cell cell-2a">
+                <span class="l-tick tl"></span><span class="l-tick tr"></span>
+                <span class="l-tick bl"></span><span class="l-tick br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">&lt; /&gt;</div>
+                        <div class="orbital-center-title">Languages</div>
+                        <div class="orbital-center-subtitle">CORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">SQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Python</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Go</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">C++</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">C</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">JavaScript</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2: Agentic AI -->
+            <div class="sector-cell cell-2a">
+                <span class="l-tick tl"></span><span class="l-tick tr"></span>
+                <span class="l-tick bl"></span><span class="l-tick br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-1"></div>
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">✦</div>
+                        <div class="orbital-center-title">Agentic AI<br>&amp; GenAI</div>
+                        <div class="orbital-center-subtitle">SPECIALTY</div>
+                    </div>
+                    <div class="orbit-track track-1">
+                        <div class="node-container" style="--angle: 0deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">NLP</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">MCP</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">LangChain</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">CrewAI</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">LLMs</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">RAG</div></div></div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 30deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 30deg;"><div class="skill-node-inner">Agentic AI</div></div></div>
+                        <div class="node-container" style="--angle: 150deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 150deg;"><div class="skill-node-inner">Nvidia NeMo</div></div></div>
+                        <div class="node-container" style="--angle: 270deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 270deg;"><div class="skill-node-inner">Embeddings</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3: ML & Data -->
+            <div class="sector-cell cell-2a">
+                <span class="l-tick tl"></span><span class="l-tick tr"></span>
+                <span class="l-tick bl"></span><span class="l-tick br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⎈</div>
+                        <div class="orbital-center-title">ML &amp; Data</div>
+                        <div class="orbital-center-subtitle">SYSTEMS</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">TOPSIS</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Data Analysis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Hugging Face</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Vector Search</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Context Eng.</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">FastEmbed</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4: Distributed Systems -->
+            <div class="sector-cell cell-2a">
+                <span class="l-tick tl"></span><span class="l-tick tr"></span>
+                <span class="l-tick bl"></span><span class="l-tick br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⊞</div>
+                        <div class="orbital-center-title">Distributed<br>Systems</div>
+                        <div class="orbital-center-subtitle">BACKEND</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Kafka</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Redis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FastAPI</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Go Services</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Rate Limiting</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Concurrency</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5: Databases -->
+            <div class="sector-cell cell-2a">
+                <span class="l-tick tl"></span><span class="l-tick tr"></span>
+                <span class="l-tick bl"></span><span class="l-tick br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">○</div>
+                        <div class="orbital-center-title">Databases</div>
+                        <div class="orbital-center-subtitle">STORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">MySQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">PostgreSQL</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FAISS</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Pinecone</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">ChromaDB</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Neo4j</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6: DevOps & Security -->
+            <div class="sector-cell cell-2a">
+                <span class="l-tick tl"></span><span class="l-tick tr"></span>
+                <span class="l-tick bl"></span><span class="l-tick br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⚙</div>
+                        <div class="orbital-center-title">DevOps &amp;<br>Security</div>
+                        <div class="orbital-center-subtitle">INFRA</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Docker</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Linux / OS</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">CI/CD Actions</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Git</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Zero-Trust</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">LLVM / Hardening</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         VARIATION 2B: ARCHITECTURAL CROSSHAIRS (+)
+         ═════════════════════════════════════════════════════════════════ -->
+    <section id="v2b" class="option-section">
+        <div class="option-header">
+            <div>
+                <span class="option-badge">Variation 2B</span>
+                <h2 class="option-title">Architectural Crosshairs (+)</h2>
+                <p class="option-desc">Four delicate 12px precision crosshairs (+) marking the sector vertices. Zero lines connecting them. Pure mathematical alignment.</p>
+                <div class="option-why">
+                    <strong>Hover Behavior:</strong> Crosshairs scale up subtly and darken on hover, reinforcing grid alignment.
+                </div>
+            </div>
+        </div>
+
+        <div class="sectors-grid">
+            <!-- 1: Languages -->
+            <div class="sector-cell cell-2b">
+                <span class="crosshair tl"></span><span class="crosshair tr"></span>
+                <span class="crosshair bl"></span><span class="crosshair br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">&lt; /&gt;</div>
+                        <div class="orbital-center-title">Languages</div>
+                        <div class="orbital-center-subtitle">CORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">SQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Python</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Go</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">C++</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">C</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">JavaScript</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2: Agentic AI -->
+            <div class="sector-cell cell-2b">
+                <span class="crosshair tl"></span><span class="crosshair tr"></span>
+                <span class="crosshair bl"></span><span class="crosshair br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-1"></div>
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">✦</div>
+                        <div class="orbital-center-title">Agentic AI<br>&amp; GenAI</div>
+                        <div class="orbital-center-subtitle">SPECIALTY</div>
+                    </div>
+                    <div class="orbit-track track-1">
+                        <div class="node-container" style="--angle: 0deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">NLP</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">MCP</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">LangChain</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">CrewAI</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">LLMs</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">RAG</div></div></div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 30deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 30deg;"><div class="skill-node-inner">Agentic AI</div></div></div>
+                        <div class="node-container" style="--angle: 150deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 150deg;"><div class="skill-node-inner">Nvidia NeMo</div></div></div>
+                        <div class="node-container" style="--angle: 270deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 270deg;"><div class="skill-node-inner">Embeddings</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3: ML & Data -->
+            <div class="sector-cell cell-2b">
+                <span class="crosshair tl"></span><span class="crosshair tr"></span>
+                <span class="crosshair bl"></span><span class="crosshair br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⎈</div>
+                        <div class="orbital-center-title">ML &amp; Data</div>
+                        <div class="orbital-center-subtitle">SYSTEMS</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">TOPSIS</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Data Analysis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Hugging Face</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Vector Search</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Context Eng.</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">FastEmbed</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4: Distributed Systems -->
+            <div class="sector-cell cell-2b">
+                <span class="crosshair tl"></span><span class="crosshair tr"></span>
+                <span class="crosshair bl"></span><span class="crosshair br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⊞</div>
+                        <div class="orbital-center-title">Distributed<br>Systems</div>
+                        <div class="orbital-center-subtitle">BACKEND</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Kafka</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Redis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FastAPI</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Go Services</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Rate Limiting</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Concurrency</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5: Databases -->
+            <div class="sector-cell cell-2b">
+                <span class="crosshair tl"></span><span class="crosshair tr"></span>
+                <span class="crosshair bl"></span><span class="crosshair br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">○</div>
+                        <div class="orbital-center-title">Databases</div>
+                        <div class="orbital-center-subtitle">STORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">MySQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">PostgreSQL</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FAISS</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Pinecone</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">ChromaDB</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Neo4j</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6: DevOps & Security -->
+            <div class="sector-cell cell-2b">
+                <span class="crosshair tl"></span><span class="crosshair tr"></span>
+                <span class="crosshair bl"></span><span class="crosshair br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⚙</div>
+                        <div class="orbital-center-title">DevOps &amp;<br>Security</div>
+                        <div class="orbital-center-subtitle">INFRA</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Docker</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Linux / OS</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">CI/CD Actions</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Git</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Zero-Trust</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">LLVM / Hardening</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         VARIATION 2C: ASYMMETRICAL DIAGONAL FRAMING
+         ═════════════════════════════════════════════════════════════════ -->
+    <section id="v2c" class="option-section">
+        <div class="option-header">
+            <div>
+                <span class="option-badge">Variation 2C</span>
+                <h2 class="option-title">Asymmetrical Diagonal Brackets</h2>
+                <p class="option-desc">Only TWO opposing corner brackets: Top-Left (┌) and Bottom-Right (┘). Leaves the opposing diagonal completely free and open.</p>
+                <div class="option-why">
+                    <strong>Why it feels open:</strong> Having only 2 diagonal corners gives an editorial geometric anchor without any feeling of being boxed in.
+                </div>
+            </div>
+        </div>
+
+        <div class="sectors-grid">
+            <!-- 1: Languages -->
+            <div class="sector-cell cell-2c">
+                <span class="diag-bracket tl"></span><span class="diag-bracket br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">&lt; /&gt;</div>
+                        <div class="orbital-center-title">Languages</div>
+                        <div class="orbital-center-subtitle">CORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">SQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Python</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Go</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">C++</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">C</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">JavaScript</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2: Agentic AI -->
+            <div class="sector-cell cell-2c">
+                <span class="diag-bracket tl"></span><span class="diag-bracket br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-1"></div>
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">✦</div>
+                        <div class="orbital-center-title">Agentic AI<br>&amp; GenAI</div>
+                        <div class="orbital-center-subtitle">SPECIALTY</div>
+                    </div>
+                    <div class="orbit-track track-1">
+                        <div class="node-container" style="--angle: 0deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">NLP</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">MCP</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">LangChain</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">CrewAI</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">LLMs</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">RAG</div></div></div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 30deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 30deg;"><div class="skill-node-inner">Agentic AI</div></div></div>
+                        <div class="node-container" style="--angle: 150deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 150deg;"><div class="skill-node-inner">Nvidia NeMo</div></div></div>
+                        <div class="node-container" style="--angle: 270deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 270deg;"><div class="skill-node-inner">Embeddings</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3: ML & Data -->
+            <div class="sector-cell cell-2c">
+                <span class="diag-bracket tl"></span><span class="diag-bracket br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⎈</div>
+                        <div class="orbital-center-title">ML &amp; Data</div>
+                        <div class="orbital-center-subtitle">SYSTEMS</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">TOPSIS</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Data Analysis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Hugging Face</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Vector Search</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Context Eng.</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">FastEmbed</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4: Distributed Systems -->
+            <div class="sector-cell cell-2c">
+                <span class="diag-bracket tl"></span><span class="diag-bracket br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⊞</div>
+                        <div class="orbital-center-title">Distributed<br>Systems</div>
+                        <div class="orbital-center-subtitle">BACKEND</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Kafka</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Redis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FastAPI</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Go Services</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Rate Limiting</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Concurrency</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5: Databases -->
+            <div class="sector-cell cell-2c">
+                <span class="diag-bracket tl"></span><span class="diag-bracket br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">○</div>
+                        <div class="orbital-center-title">Databases</div>
+                        <div class="orbital-center-subtitle">STORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">MySQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">PostgreSQL</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FAISS</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Pinecone</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">ChromaDB</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Neo4j</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6: DevOps & Security -->
+            <div class="sector-cell cell-2c">
+                <span class="diag-bracket tl"></span><span class="diag-bracket br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⚙</div>
+                        <div class="orbital-center-title">DevOps &amp;<br>Security</div>
+                        <div class="orbital-center-subtitle">INFRA</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Docker</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Linux / OS</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">CI/CD Actions</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Git</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Zero-Trust</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">LLVM / Hardening</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         VARIATION 2D: CARDINAL RETICLE TICKS (N · S · E · W)
+         ═════════════════════════════════════════════════════════════════ -->
+    <section id="v2d" class="option-section">
+        <div class="option-header">
+            <div>
+                <span class="option-badge">Variation 2D</span>
+                <h2 class="option-title">Cardinal Reticle Ticks (N &bull; S &bull; E &bull; W)</h2>
+                <p class="option-desc">Four subtle cross-hair ticks positioned at the cardinal points (Top, Bottom, Left, Right) pointing toward the central node like astronomical reticles.</p>
+                <div class="option-why">
+                    <strong>Why it feels open:</strong> Ticks sit on the side centers rather than the corners, guiding the eye straight into the planetary orbit.
+                </div>
+            </div>
+        </div>
+
+        <div class="sectors-grid">
+            <!-- 1: Languages -->
+            <div class="sector-cell cell-2d">
+                <span class="cardinal-tick north"></span><span class="cardinal-tick south"></span>
+                <span class="cardinal-tick west"></span><span class="cardinal-tick east"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">&lt; /&gt;</div>
+                        <div class="orbital-center-title">Languages</div>
+                        <div class="orbital-center-subtitle">CORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">SQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Python</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Go</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">C++</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">C</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">JavaScript</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2: Agentic AI -->
+            <div class="sector-cell cell-2d">
+                <span class="cardinal-tick north"></span><span class="cardinal-tick south"></span>
+                <span class="cardinal-tick west"></span><span class="cardinal-tick east"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-1"></div>
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">✦</div>
+                        <div class="orbital-center-title">Agentic AI<br>&amp; GenAI</div>
+                        <div class="orbital-center-subtitle">SPECIALTY</div>
+                    </div>
+                    <div class="orbit-track track-1">
+                        <div class="node-container" style="--angle: 0deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">NLP</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">MCP</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">LangChain</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">CrewAI</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">LLMs</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">RAG</div></div></div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 30deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 30deg;"><div class="skill-node-inner">Agentic AI</div></div></div>
+                        <div class="node-container" style="--angle: 150deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 150deg;"><div class="skill-node-inner">Nvidia NeMo</div></div></div>
+                        <div class="node-container" style="--angle: 270deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 270deg;"><div class="skill-node-inner">Embeddings</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3: ML & Data -->
+            <div class="sector-cell cell-2d">
+                <span class="cardinal-tick north"></span><span class="cardinal-tick south"></span>
+                <span class="cardinal-tick west"></span><span class="cardinal-tick east"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⎈</div>
+                        <div class="orbital-center-title">ML &amp; Data</div>
+                        <div class="orbital-center-subtitle">SYSTEMS</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">TOPSIS</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Data Analysis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Hugging Face</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Vector Search</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Context Eng.</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">FastEmbed</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4: Distributed Systems -->
+            <div class="sector-cell cell-2d">
+                <span class="cardinal-tick north"></span><span class="cardinal-tick south"></span>
+                <span class="cardinal-tick west"></span><span class="cardinal-tick east"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⊞</div>
+                        <div class="orbital-center-title">Distributed<br>Systems</div>
+                        <div class="orbital-center-subtitle">BACKEND</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Kafka</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Redis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FastAPI</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Go Services</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Rate Limiting</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Concurrency</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5: Databases -->
+            <div class="sector-cell cell-2d">
+                <span class="cardinal-tick north"></span><span class="cardinal-tick south"></span>
+                <span class="cardinal-tick west"></span><span class="cardinal-tick east"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">○</div>
+                        <div class="orbital-center-title">Databases</div>
+                        <div class="orbital-center-subtitle">STORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">MySQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">PostgreSQL</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FAISS</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Pinecone</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">ChromaDB</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Neo4j</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6: DevOps & Security -->
+            <div class="sector-cell cell-2d">
+                <span class="cardinal-tick north"></span><span class="cardinal-tick south"></span>
+                <span class="cardinal-tick west"></span><span class="cardinal-tick east"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⚙</div>
+                        <div class="orbital-center-title">DevOps &amp;<br>Security</div>
+                        <div class="orbital-center-subtitle">INFRA</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Docker</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Linux / OS</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">CI/CD Actions</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Git</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Zero-Trust</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">LLVM / Hardening</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         VARIATION 2E: AUTOFOCUS VIEWFINDER
+         ═════════════════════════════════════════════════════════════════ -->
+    <section id="v2e" class="option-section">
+        <div class="option-header">
+            <div>
+                <span class="option-badge">Variation 2E</span>
+                <h2 class="option-title">Interactive Autofocus Viewfinder</h2>
+                <p class="option-desc">Four camera reticle brackets that smoothly draw inward on hover to "lock focus" on the planetary orbit, mimicking a high-end camera viewfinder.</p>
+                <div class="option-why">
+                    <strong>Hover Behavior:</strong> Brackets gently tighten inward from 290px to 260px when hovered, giving an intuitive autofocus feel.
+                </div>
+            </div>
+        </div>
+
+        <div class="sectors-grid">
+            <!-- 1: Languages -->
+            <div class="sector-cell cell-2e">
+                <div class="viewfinder-frame">
+                    <span class="vf-tick tl"></span><span class="vf-tick tr"></span>
+                    <span class="vf-tick bl"></span><span class="vf-tick br"></span>
+                </div>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">&lt; /&gt;</div>
+                        <div class="orbital-center-title">Languages</div>
+                        <div class="orbital-center-subtitle">CORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">SQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Python</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Go</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">C++</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">C</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">JavaScript</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2: Agentic AI -->
+            <div class="sector-cell cell-2e">
+                <div class="viewfinder-frame">
+                    <span class="vf-tick tl"></span><span class="vf-tick tr"></span>
+                    <span class="vf-tick bl"></span><span class="vf-tick br"></span>
+                </div>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-1"></div>
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">✦</div>
+                        <div class="orbital-center-title">Agentic AI<br>&amp; GenAI</div>
+                        <div class="orbital-center-subtitle">SPECIALTY</div>
+                    </div>
+                    <div class="orbit-track track-1">
+                        <div class="node-container" style="--angle: 0deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">NLP</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">MCP</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">LangChain</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">CrewAI</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">LLMs</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">RAG</div></div></div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 30deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 30deg;"><div class="skill-node-inner">Agentic AI</div></div></div>
+                        <div class="node-container" style="--angle: 150deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 150deg;"><div class="skill-node-inner">Nvidia NeMo</div></div></div>
+                        <div class="node-container" style="--angle: 270deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 270deg;"><div class="skill-node-inner">Embeddings</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3: ML & Data -->
+            <div class="sector-cell cell-2e">
+                <div class="viewfinder-frame">
+                    <span class="vf-tick tl"></span><span class="vf-tick tr"></span>
+                    <span class="vf-tick bl"></span><span class="vf-tick br"></span>
+                </div>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⎈</div>
+                        <div class="orbital-center-title">ML &amp; Data</div>
+                        <div class="orbital-center-subtitle">SYSTEMS</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">TOPSIS</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Data Analysis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Hugging Face</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Vector Search</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Context Eng.</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">FastEmbed</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4: Distributed Systems -->
+            <div class="sector-cell cell-2e">
+                <div class="viewfinder-frame">
+                    <span class="vf-tick tl"></span><span class="vf-tick tr"></span>
+                    <span class="vf-tick bl"></span><span class="vf-tick br"></span>
+                </div>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⊞</div>
+                        <div class="orbital-center-title">Distributed<br>Systems</div>
+                        <div class="orbital-center-subtitle">BACKEND</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Kafka</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Redis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FastAPI</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Go Services</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Rate Limiting</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Concurrency</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5: Databases -->
+            <div class="sector-cell cell-2e">
+                <div class="viewfinder-frame">
+                    <span class="vf-tick tl"></span><span class="vf-tick tr"></span>
+                    <span class="vf-tick bl"></span><span class="vf-tick br"></span>
+                </div>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">○</div>
+                        <div class="orbital-center-title">Databases</div>
+                        <div class="orbital-center-subtitle">STORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">MySQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">PostgreSQL</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FAISS</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Pinecone</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">ChromaDB</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Neo4j</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6: DevOps & Security -->
+            <div class="sector-cell cell-2e">
+                <div class="viewfinder-frame">
+                    <span class="vf-tick tl"></span><span class="vf-tick tr"></span>
+                    <span class="vf-tick bl"></span><span class="vf-tick br"></span>
+                </div>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⚙</div>
+                        <div class="orbital-center-title">DevOps &amp;<br>Security</div>
+                        <div class="orbital-center-subtitle">INFRA</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Docker</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Linux / OS</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">CI/CD Actions</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Git</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Zero-Trust</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">LLVM / Hardening</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         VARIATION 2F: PRECISION MICRO PINS
+         ═════════════════════════════════════════════════════════════════ -->
+    <section id="v2f" class="option-section" style="border-bottom: none;">
+        <div class="option-header">
+            <div>
+                <span class="option-badge">Variation 2F</span>
+                <h2 class="option-title">Precision Micro Pins (Geometric Dots)</h2>
+                <p class="option-desc">Four subtle 5px coordinate pin dots marking the corners of each sector. Zero lines, zero boxes, ultra-minimalist.</p>
+                <div class="option-why">
+                    <strong>Why it feels open:</strong> Geometric dots establish spatial boundaries cleanly without drawing a single line.
+                </div>
+            </div>
+        </div>
+
+        <div class="sectors-grid">
+            <!-- 1: Languages -->
+            <div class="sector-cell cell-2f">
+                <span class="pin-dot tl"></span><span class="pin-dot tr"></span>
+                <span class="pin-dot bl"></span><span class="pin-dot br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">&lt; /&gt;</div>
+                        <div class="orbital-center-title">Languages</div>
+                        <div class="orbital-center-subtitle">CORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">SQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Python</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Go</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">C++</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">C</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">JavaScript</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2: Agentic AI -->
+            <div class="sector-cell cell-2f">
+                <span class="pin-dot tl"></span><span class="pin-dot tr"></span>
+                <span class="pin-dot bl"></span><span class="pin-dot br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-1"></div>
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">✦</div>
+                        <div class="orbital-center-title">Agentic AI<br>&amp; GenAI</div>
+                        <div class="orbital-center-subtitle">SPECIALTY</div>
+                    </div>
+                    <div class="orbit-track track-1">
+                        <div class="node-container" style="--angle: 0deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">NLP</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">MCP</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">LangChain</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">CrewAI</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">LLMs</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 52px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">RAG</div></div></div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 30deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 30deg;"><div class="skill-node-inner">Agentic AI</div></div></div>
+                        <div class="node-container" style="--angle: 150deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 150deg;"><div class="skill-node-inner">Nvidia NeMo</div></div></div>
+                        <div class="node-container" style="--angle: 270deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 270deg;"><div class="skill-node-inner">Embeddings</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3: ML & Data -->
+            <div class="sector-cell cell-2f">
+                <span class="pin-dot tl"></span><span class="pin-dot tr"></span>
+                <span class="pin-dot bl"></span><span class="pin-dot br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⎈</div>
+                        <div class="orbital-center-title">ML &amp; Data</div>
+                        <div class="orbital-center-subtitle">SYSTEMS</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">TOPSIS</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Data Analysis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">Hugging Face</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Vector Search</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Context Eng.</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">FastEmbed</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4: Distributed Systems -->
+            <div class="sector-cell cell-2f">
+                <span class="pin-dot tl"></span><span class="pin-dot tr"></span>
+                <span class="pin-dot bl"></span><span class="pin-dot br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⊞</div>
+                        <div class="orbital-center-title">Distributed<br>Systems</div>
+                        <div class="orbital-center-subtitle">BACKEND</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Kafka</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Redis</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FastAPI</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Go Services</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Rate Limiting</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Concurrency</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5: Databases -->
+            <div class="sector-cell cell-2f">
+                <span class="pin-dot tl"></span><span class="pin-dot tr"></span>
+                <span class="pin-dot bl"></span><span class="pin-dot br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">○</div>
+                        <div class="orbital-center-title">Databases</div>
+                        <div class="orbital-center-subtitle">STORE</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">MySQL</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">PostgreSQL</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">FAISS</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Pinecone</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">ChromaDB</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">Neo4j</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6: DevOps & Security -->
+            <div class="sector-cell cell-2f">
+                <span class="pin-dot tl"></span><span class="pin-dot tr"></span>
+                <span class="pin-dot bl"></span><span class="pin-dot br"></span>
+                <div class="orbital-stage">
+                    <div class="orbit-ring orbit-2"></div>
+                    <div class="orbital-center">
+                        <div class="orbital-center-icon">⚙</div>
+                        <div class="orbital-center-title">DevOps &amp;<br>Security</div>
+                        <div class="orbital-center-subtitle">INFRA</div>
+                    </div>
+                    <div class="orbit-track track-2">
+                        <div class="node-container" style="--angle: 0deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 0deg;"><div class="skill-node-inner">Docker</div></div></div>
+                        <div class="node-container" style="--angle: 60deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 60deg;"><div class="skill-node-inner">Linux / OS</div></div></div>
+                        <div class="node-container" style="--angle: 120deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 120deg;"><div class="skill-node-inner">CI/CD Actions</div></div></div>
+                        <div class="node-container" style="--angle: 180deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 180deg;"><div class="skill-node-inner">Git</div></div></div>
+                        <div class="node-container" style="--angle: 240deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 240deg;"><div class="skill-node-inner">Zero-Trust</div></div></div>
+                        <div class="node-container" style="--angle: 300deg; --radius: 113px;"><div class="node-wrapper" style="--angle: 300deg;"><div class="skill-node-inner">LLVM / Hardening</div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('theme-icon').textContent = isDark ? '☼' : '◐';
+            localStorage.setItem('preview_theme', isDark ? 'dark' : 'light');
+        }
+
+        if (localStorage.getItem('preview_theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            const icon = document.getElementById('theme-icon');
+            if (icon) icon.textContent = '☼';
+        }
+    </script>
+</body>
+</html>
